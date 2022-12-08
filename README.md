@@ -33,8 +33,6 @@
 
 ## TODO
 
----
-
 - [x] Add the project description.
 - [x] Add the team members' names and IDs.
 - [x] Add the project's description.
@@ -57,8 +55,6 @@
 
 ## Stadium management system
 
----
-
 This project is a stadium reservation system for a football club. The system is designed to be used by the club's employees to manage the stadium's reservations and by the club's customers to reserve fields.
 
 ## Team members
@@ -70,8 +66,6 @@ This project is a stadium reservation system for a football club. The system is 
 |Omar Sherif    |6540   |   |
 
 ## User requirements
-
----
 
 ### Customer
 
@@ -100,7 +94,6 @@ This project is a stadium reservation system for a football club. The system is 
 
 ## System requirements
 
----
 > The system requirements are divided into functional requirements and non-functional requirements.
 
 ### Functional requirements
@@ -140,8 +133,6 @@ This project is a stadium reservation system for a football club. The system is 
 
 ## Software process
 
----
-
 ### Type of process
 
 The software process that will be used in this project is agile.
@@ -156,8 +147,6 @@ The project will be divided into 3 phases:
 
 ## Architecture design
 
----
-
 ### System architecture
 
 - [ ] Choose the system architecture that will be used in the project.
@@ -167,8 +156,6 @@ The project will be divided into 3 phases:
 - [ ] Choose the application architecture that will be used in the project.
 
 ## System modeling
-
----
 
 ### Use case diagram
 
@@ -192,14 +179,10 @@ The project will be divided into 3 phases:
 
 ## Design and implementation
 
----
-
 - [ ] Design the system.
 - [ ] Implement the system.
 
 ## Testing
-
----
 
 ### Development testing
 
