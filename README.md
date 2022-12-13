@@ -62,7 +62,7 @@ This project is a stadium reservation system for a football club. The system is 
 |Name           |ID     |Handler                                        |
 |-              |-      |-                                              |
 |Nael Mostafa   |6099   |[naelmostafa](https://github.com/naelmostafa)  |
-|Omar Saad      |6317   |   |
+|Omar Saad      |6317   |[Omar-Saad](https://github.com/Omar-Saad)  |
 |Omar Sherif    |6540   |   |
 
 ## User requirements
