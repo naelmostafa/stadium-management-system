@@ -22,8 +22,29 @@ POSTGRES_USER=your_user
 POSTGRES_PASSWORD=your_password
 POSTGRES_PORT=your_port
 ```
+6. Create a database.json file in the root directory of the project and add the following variables:
 
-6. Run `npm start` to start the server.
+```
+{
+  "dev": {
+    "username": "your_user",
+    "password": "your_password",
+    "database": "your_database",
+    "host": "your_host",
+    "dialect": "postgres"
+  },
+    "test": {
+        "username": "your_user",
+        "password": "your_password",
+        "database": "your_database",
+        "host": "your_host",
+        "dialect": "postgres"
+    },
+
+}
+```
+
+7. Run `npm start` to start the server.
 
 ## Usage
 
