@@ -3,7 +3,7 @@ import cors from 'cors';
 
 const app = express();
 
-// adidng cors middleware
+// adding cors middleware
 app.use(cors());
 
 // adding body parser middleware

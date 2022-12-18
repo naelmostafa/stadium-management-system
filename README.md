@@ -48,7 +48,7 @@
   - [ ] Add the sequence diagram.
   - [ ] Add the state diagram.
   - [ ] Add the activity diagram.
-- [ ] Add the design and implementaion.
+- [ ] Add the design and implementation.
 - [ ] Add the testing.
   - [ ] Development testing.
   - [ ] Release testing.
@@ -149,45 +149,45 @@ The project will be divided into 3 phases:
 
 ### System architecture
 
-- [ ] Choose the system architecture that will be used in the project.
+- Choose the system architecture that will be used in the project.
 
 ### Application architecture
 
-- [ ] Choose the application architecture that will be used in the project.
+- Choose the application architecture that will be used in the project.
 
 ## System modeling
 
 ### Use case diagram
 
-- [ ] Draw the use case diagram of the system.
+- Draw the use case diagram of the system.
 
 ### Class diagram
 
-- [ ] Draw the class diagram of the system.
+- Draw the class diagram of the system.
 
 ### Sequence diagram
 
-- [ ] Draw the sequence diagram of the system.
+- Draw the sequence diagram of the system.
 
 ### State diagram
 
-- [ ] Draw the state diagram of the system.
+- Draw the state diagram of the system.
 
 ### Activity diagram
 
-- [ ] Draw the activity diagram of the system.
+- Draw the activity diagram of the system.
 
 ## Design and implementation
 
-- [ ] Design the system.
-- [ ] Implement the system.
+- Design the system.
+- Implement the system.
 
 ## Testing
 
 ### Development testing
 
-- [ ] Test the system during development.
+- Test the system during development.
 
 ### Release testing
 
-- [ ] Test the system before release.
+- Test the system before release.
