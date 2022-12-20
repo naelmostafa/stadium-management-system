@@ -43,8 +43,8 @@
   - [ ] Add the system architecture.
   - [ ] Add the application architecture.
 - [ ] Add the system modeling.
-  - [ ] Add the use case diagram.
-  - [ ] Add the class diagram.
+  - [x] Add the use case diagram.
+  - [x] Add the class diagram.
   - [ ] Add the sequence diagram.
   - [ ] Add the state diagram.
   - [ ] Add the activity diagram.
@@ -159,11 +159,11 @@ The project will be divided into 3 phases:
 
 ### Use case diagram
 
-- Draw the use case diagram of the system.
+![Use-case](../assets/use-case.jpg)
 
 ### Class diagram
 
-- Draw the class diagram of the system.
+![class-diagram](../assets/class-diagram.jpg)
 
 ### Sequence diagram
 
