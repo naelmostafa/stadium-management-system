@@ -1,9 +1,11 @@
 import { User, UserModel } from './user';
 
-export interface Admin extends User {
+interface Admin extends User {
   // ...
 }
 
-export class AdminModel extends UserModel {
+class AdminModel extends UserModel {
   // ...
 }
+
+export { Admin, AdminModel };

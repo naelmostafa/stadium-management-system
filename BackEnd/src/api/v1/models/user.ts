@@ -1,7 +1,7 @@
-import client from '../../../config/database'; // this class communicate with the database
+import { client } from '../../../config'; // this class communicate with the database
 import bcrypt from 'bcrypt'; // this class encrypt the password
 
-export type User = {
+interface User {
   id: number;
   name: string;
   email: string;
@@ -11,7 +11,7 @@ export type User = {
 };
 
 // this class communicate with the database
-export class UserModel {
+class UserModel {
   // login
   async login(email: string, password: string): Promise<User> {
     try {
@@ -66,3 +66,5 @@ export class UserModel {
     }
   }
 }
+
+export { User, UserModel };

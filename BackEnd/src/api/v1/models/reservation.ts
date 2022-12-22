@@ -1,6 +1,6 @@
-import client from '../../../config/database';
+import { client } from '../../../config';
 
-export type Reservation = {
+interface Reservation {
   id?: number;
   customer_id: number;
   date: string;
@@ -12,7 +12,7 @@ export type Reservation = {
   payment_method: string;
 };
 
-export class ReservationModel {
+class ReservationModel {
   async getAllReservations(): Promise<Reservation[]> {
     try {
       const sql = `SELECT * FROM reservations`;
@@ -94,3 +94,5 @@ export class ReservationModel {
     }
   }
 }
+
+export { Reservation, ReservationModel };

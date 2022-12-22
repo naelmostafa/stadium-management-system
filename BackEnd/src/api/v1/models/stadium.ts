@@ -1,5 +1,6 @@
-import client from '../../../config/database';
-export type Stadium = {
+import { client } from '../../../config';
+
+interface Stadium {
   id?: number;
   name: string;
   description: string;
@@ -11,7 +12,7 @@ export type Stadium = {
   photo: string;
 };
 
-export class StadiumModel {
+class StadiumModel {
   async getAllStadiums(): Promise<Stadium[]> {
     try {
       const sql = `SELECT * FROM stadiums`;
@@ -90,3 +91,5 @@ export class StadiumModel {
     }
   }
 }
+
+export { Stadium, StadiumModel }

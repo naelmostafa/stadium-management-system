@@ -1,7 +1,7 @@
 import { User, UserModel } from './user';
-import client from '../../../config/database'; // this class communicate with the database
+import { client } from '../../../config'; // this class communicate with the database
 
-export interface Employee extends User {
+interface Employee extends User {
   salary: number;
   ssn: string;
 }
@@ -41,3 +41,5 @@ class EmployeeModel extends UserModel {
     }
   }
 }
+
+export { Employee, EmployeeModel };

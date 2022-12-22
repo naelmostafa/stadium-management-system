@@ -15,4 +15,4 @@ const client = new Pool({
   password: POSTGRES_PASSWORD,
 });
 
-export default client;
+export { client };

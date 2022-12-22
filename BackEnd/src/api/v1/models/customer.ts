@@ -1,7 +1,7 @@
 import { User, UserModel } from './user';
-import client from '../../../config/database'; // this class communicate with the database
+import { client } from '../../../config'; // this class communicate with the database
 
-export interface Customer extends User {
+interface Customer extends User {
   balance: number;
 }
 
@@ -24,3 +24,5 @@ class CustomerModel extends UserModel {
     }
   }
 }
+
+export { Customer, CustomerModel };
