@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS reservations
 CREATE TABLE IF NOT EXISTS customer
 (
     id integer NOT NULL,
-    balance VARCHAR NOT NULL,
+    balance FLOAT NOT NULL,
     PRIMARY KEY (id)
 );
 
