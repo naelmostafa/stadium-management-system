@@ -10,7 +10,7 @@ interface Reservation {
   deposit: number;
   total_price: number;
   payment_method: string;
-};
+}
 
 class ReservationModel {
   async getAllReservations(): Promise<Reservation[]> {

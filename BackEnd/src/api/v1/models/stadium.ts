@@ -10,9 +10,33 @@ interface Stadium {
   stadium_number: number;
   status: string;
   photo: string;
-};
+}
+
+// stadium status enum: available, unavailable
+enum StadiumStatus {
+  AVAILABLE,
+  UNAVAILABLE,
+}
 
 class StadiumModel {
+  async getAvailableStadiumsByDate(
+    reservationDate: string,
+    reservationTime: string
+  ): Promise<Stadium[]> {
+    // get all available stadiums that are not booked on the given date
+    try {
+      const sql = `SELECT * FROM stadiums WHERE id NOT IN (SELECT stadium_id FROM reservations WHERE date = ? AND ? NOT BETWEEN start_time AND end_time) AND status = ?`;
+      const result = await client.query(sql, [
+        reservationDate,
+        reservationTime,
+        StadiumStatus.AVAILABLE.toString(),
+      ]);
+      return result.rows;
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? 'Something went wrong';
+      throw new Error(errorMessage);
+    }
+  }
   async getAllStadiums(): Promise<Stadium[]> {
     try {
       const sql = `SELECT * FROM stadiums`;
@@ -92,4 +116,4 @@ class StadiumModel {
   }
 }
 
-export { Stadium, StadiumModel }
+export { Stadium, StadiumModel };

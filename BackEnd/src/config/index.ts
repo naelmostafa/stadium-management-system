@@ -1,2 +1,2 @@
-export {logger} from './Logger';
-export {client} from './database';
+export { logger } from './Logger';
+export { client } from './database';

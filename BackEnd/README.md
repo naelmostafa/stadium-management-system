@@ -70,8 +70,54 @@ Response Body On success:
 ``` json
 {
     "id": 1,
-    "email": ""
+    "email": "",
     "name": "",
     ...all other customer fields
 }
 ```
+##### Update customer data (TODO)
+
+
+#### Stadium 
+##### Get Availble stadiums in the given date and time
+```bash
+GET /stadiums/availbe-stadiums?reservation_date=2023-01-01&reservation_time=18:00
+```
+No body in request
+
+Response Body On success:
+``` json
+{
+    "id": 1,
+    "size": "",
+    "description": "",
+    ...all other stadium fields
+}
+```
+
+##### Add new Stdiums (TODO: Authentication)
+```bash
+POST /stadiums/add
+```
+
+Request Body:
+``` json
+{
+    "name":"",
+    "size": "",
+    "description": "",
+    ...all other stadium fields
+}
+```
+
+Response Body On success:
+``` json
+{
+    "id": 1
+    "name":"",
+    "size": "",
+    "description": "",
+    ...all other stadium fields
+}
+```
+

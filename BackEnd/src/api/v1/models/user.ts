@@ -5,10 +5,10 @@ interface User {
   id: number;
   name: string;
   email: string;
-  password: string;
+  password?: string;
   phoneNumber: string;
   profilePicture: string;
-};
+}
 
 // this class communicate with the database
 class UserModel {
@@ -16,12 +16,17 @@ class UserModel {
   async login(email: string, password: string): Promise<User> {
     try {
       // verify bcrypt password
-      const sql = `SELECT (id, name, email, phone_number, profile_picture) FROM users WHERE email = ?`;
+      const sql = `SELECT * FROM users WHERE email = ?`;
       const result = await client.query(sql, [email]);
       if (result.rows.length == 1) {
         const user: User = result.rows[0];
-        const isPasswordCorrect = await bcrypt.compare(password, user.password);
-        if (!isPasswordCorrect) {
+        const isPasswordCorrect = await bcrypt.compare(
+          password,
+          result.rows[0].password
+        );
+        if (isPasswordCorrect) {
+          // remove password from user object
+          delete user.password;
           return user;
         } else {
           throw new Error('Invalid email or password');
@@ -40,12 +45,12 @@ class UserModel {
     name: string,
     email: string,
     password: string,
-    phoneNumber: string,
+    phoneNumber: string
   ): Promise<User> {
     try {
       const saltRounds: number = process.env.SALT_ROUNDS as unknown as number;
       password = await bcrypt.hash(password, saltRounds);
-      const sql = `INSERT INTO users (name, email, password, phone_number) VALUES (?, ?, ?, ?) RETURNING *`;
+      const sql = `INSERT INTO users (name, email, password, phone_number) VALUES (?, ?, ?, ?) RETURNING (id, name, email, phone_number, profile_picture))`;
       const result = await client.query(sql, [
         name,
         email,

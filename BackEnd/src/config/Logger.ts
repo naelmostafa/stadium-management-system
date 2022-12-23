@@ -6,21 +6,22 @@ export const logger = winston.createLogger({
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.colorize(),
-        winston.format.simple(),
+        winston.format.simple()
       ),
     }),
 
     new winston.transports.File({
-      filename: 'logs/error.log', level: 'error',
+      filename: 'logs/error.log',
+      level: 'error',
       format: winston.format.combine(
         winston.format.timestamp(),
-        winston.format.prettyPrint(),
+        winston.format.prettyPrint()
       ),
     }),
     new winston.transports.File({
       format: winston.format.combine(
         winston.format.timestamp(),
-        winston.format.prettyPrint(),
+        winston.format.prettyPrint()
       ),
       filename: 'logs/combined.log',
     }),
