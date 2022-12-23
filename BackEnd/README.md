@@ -24,31 +24,54 @@
     DB_DIALECT=postgres
     ```
 
-6. Create a database.json file in the root directory of the project and add the following variables:
-
-    ``` json
-    {
-      "dev": {
-        "username": "your_user",
-        "password": "your_password",
-        "database": "your_database",
-        "host": "your_host",
-        "dialect": "postgres"
-      },
-        "test": {
-            "username": "your_user",
-            "password": "your_password",
-            "database": "your_database",
-            "host": "your_host",
-            "dialect": "postgres"
-        },
-    }
-    ```
-
-7. Run `npm start` to start the server.
+6. Run `npm start` to start the server.
 
 ## Usage
 
 ### Endpoints
 
-To be added later.
+#### Customers
+
+##### Login
+``` bash
+POST /customers/login
+```
+Request Body:
+``` json
+{
+    "email": "",
+    "password": ""
+}
+```
+Response Body On success:
+``` json
+{
+    "id": 1,
+    "email": ""
+    "name": "",
+    ...all other customer fields
+}
+```
+
+##### Register
+``` bash
+POST /customers/register
+```
+Request Body:
+``` json
+{
+    "email": "",
+    "password": "",
+    "name": "",
+    "phone": ""
+}
+```
+Response Body On success:
+``` json
+{
+    "id": 1,
+    "email": ""
+    "name": "",
+    ...all other customer fields
+}
+```
