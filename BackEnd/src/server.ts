@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { logger } from './config';
 import dotenv from 'dotenv';
+import routes from './api/v1/routes';
 dotenv.config();
 
 const app = express();
@@ -11,6 +12,8 @@ app.use(cors());
 
 // adding body parser middleware
 app.use(express.json());
+
+app.use(routes);
 
 app.listen(3030, () => {
   logger.info('Server started at http://localhost:3030');
