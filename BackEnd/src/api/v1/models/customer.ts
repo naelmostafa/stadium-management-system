@@ -1,6 +1,5 @@
 import { User, UserModel } from './user';
-import { client } from '../../../config'; // this class communicate with the database
-import { ResponseMessages } from '../../../config/constants';
+import { client, ResponseMessages} from '../../../config'; // this class communicate with the database
 
 interface Customer extends User {
   balance: number;
@@ -71,6 +70,26 @@ class CustomerModel extends UserModel {
       throw new Error(errorMessage);
     }
   }
+
+  // dummy to check the flow
+  async testGet(): Promise<string> {
+    try {
+      return 'Hello World';
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? 'Something went wrong';
+      throw new Error(errorMessage);
+    }
+  }
+
+  async testPost(username:string, password:string ): Promise<string> {
+    try {
+      return `Hello ${username} with password ${password}`;
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? 'Something went wrong';
+      throw new Error(errorMessage);
+    }
+  }
+
 }
 
 export { Customer, CustomerModel };

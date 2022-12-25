@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
-import { ResponseMessages, StatusCodes } from '../../../../config/constants';
+import { ResponseMessages, StatusCodes } from '../../../../config';
 import { Stadium, StadiumModel } from '../../models';
 
 export class StadiumController {
+  
   public async getAvailableStadiums(req: Request, res: Response) {
     try {
       let reservationDate = req.query.reservation_date;
