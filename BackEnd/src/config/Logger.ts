@@ -10,20 +10,20 @@ export const logger = winston.createLogger({
       ),
     }),
 
-    new winston.transports.File({
-      filename: 'logs/error.log',
-      level: 'error',
-      format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.prettyPrint()
-      ),
-    }),
-    new winston.transports.File({
-      format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.prettyPrint()
-      ),
-      filename: 'logs/combined.log',
-    }),
+    // new winston.transports.File({
+    //   filename: 'logs/error.log',
+    //   level: 'error',
+    //   format: winston.format.combine(
+    //     winston.format.timestamp(),
+    //     winston.format.prettyPrint()
+    //   ),
+    // }),
+    // new winston.transports.File({
+    //   format: winston.format.combine(
+    //     winston.format.timestamp(),
+    //     winston.format.prettyPrint()
+    //   ),
+    //   filename: 'logs/combined.log',
+    // }),
   ],
 });
