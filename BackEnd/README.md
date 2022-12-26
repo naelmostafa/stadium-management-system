@@ -130,17 +130,28 @@ Response
 
 ##### Get Availble stadiums in the given date and time
 ```bash
-GET /stadiums/availbe-stadiums?reservation_date=2023-01-01&reservation_time=18:00
+GET /stadium/available-stadiums?reservation_date=2023-01-01&start_time=18:00&end_time=20:00
 ```
 No body in request
 
 Response Body On success:
 ``` json
 {
-    "id": 1,
-    "size": "",
-    "description": "",
-    ...all other stadium fields
+    "status": 200,
+    "message": "stadiums fetched successfully",
+    "data": [
+        {
+            "id": 2,
+            "name": "stadium 1",
+            "description": "Beautiful stadium",
+            "size": 5,
+            "cost_per_hour": 200,
+            "location": "Smouha,Alexandria",
+            "photo": null,
+            "stadium_number": 2,
+            "status": "available"
+        }
+    ]
 }
 ```
 
@@ -217,5 +228,86 @@ Response on success
 }
 ```
 
+#### Reservations
 
+##### Add new reservation
+```bash
+POST /reservation/add
+```
+Request Body:
+``` json
+{
+   "customer_id":4,
+        "date": "2023-01-01",
+        "start_time" : "22:00",
+        "end_time":"00:00",
+        "stadium_id" : 2,
+        "deposit" : 50,
+        "total_price":400,
+        "payment_method":"visa"
 
+}
+```
+Response Body On success:
+``` json
+{
+    "status": 201,
+    "message": "Reservation added successfully",
+    "data": {
+        "id": 4,
+        "customer_id": 4,
+        "date": "2023-01-01",
+        "start_time": "22:00:00",
+        "end_time": "00:00:00",
+        "stadium_id": 2,
+        "deposit": 50,
+        "total_price": 400,
+        "payment_method": "visa"
+    }
+}
+```
+
+##### Get all reservations
+```bash
+GET /reservations/all
+```
+No body in request
+Response on success
+```json
+{
+    "status": 200,
+    "message": "reservations fetched successfully",
+    "data": [
+        {
+            "id": 7,
+            "customer_id": 4,
+            "date": "2023-01-02",
+            "start_time": "22:00:00",
+            "end_time": "00:00:00",
+            "stadium_id": 2,
+            "deposit": 50,
+            "total_price": 400,
+            "payment_method": "visa"
+        },
+        {
+            "id": 8,
+            "customer_id": 4,
+            "date": "2023-01-01",
+            "start_time": "22:00:00",
+            "end_time": "00:00:00",
+            "stadium_id": 2,
+            "deposit": 50,
+            "total_price": 400,
+            "payment_method": "visa"
+        }
+    ]
+}
+```
+##### Update reservation (TODO: Authentication)
+```bash
+PUT /reservation/:reservation_id/update
+```
+##### Update reservation (TODO: Authentication)
+```bash
+PUT /reservation/:reservation_id/update
+```

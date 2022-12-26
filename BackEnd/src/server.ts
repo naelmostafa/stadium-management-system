@@ -3,9 +3,7 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
-import { logger } from './config';
-import { PORT } from './config';
-
+import { AppConstants, logger } from './config';
 
 const app = express();
 // adding cors middleware
@@ -17,11 +15,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // adding routes
 import { CustomerRoutes, StadiumRoutes } from './api/v1/routes';
+import { ReservationRoutes } from './api/v1/routes/reservation/reservation.routes';
 
-const customerRoutes = new CustomerRoutes();
-const stadiumRoutes = new StadiumRoutes();
+const customerRoutes: CustomerRoutes = new CustomerRoutes();
+const stadiumRoutes: StadiumRoutes = new StadiumRoutes();
+const reservationRoutes: ReservationRoutes = new ReservationRoutes();
+
 customerRoutes.routes(app);
 stadiumRoutes.routes(app);
+reservationRoutes.routes(app);
 
 // log available routes with method and path
 app._router.stack.forEach((r: any) => {
@@ -31,7 +33,6 @@ app._router.stack.forEach((r: any) => {
 });
 
 // start the Express server
-app.listen(PORT, () => {
-  logger.info(`server started at http://localhost:${PORT}`);
-
+app.listen(AppConstants.PORT, () => {
+  logger.info(`server started at http://localhost:${AppConstants.PORT}`);
 });

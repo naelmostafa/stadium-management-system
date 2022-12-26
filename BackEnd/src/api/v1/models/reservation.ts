@@ -35,6 +35,49 @@ class ReservationModel {
       throw new Error(errorMessage);
     }
   }
+  async isReservationAvailable(
+    reservationDate: string,
+    reservationStartTime: string,
+    reservationEndTime: string,
+    stadiumId: number,
+    reservationId?: number
+  ): Promise<boolean> {
+    try {
+      if (reservationId) {
+        const sql = `SELECT * FROM reservations WHERE date =$1
+      AND ( (start_time >=$2 AND start_time < $3) OR (end_time>$2 AND end_time<$3 ) )
+    AND stadium_id = $4 AND id != $5;`;
+        const result = await client.query(sql, [
+          reservationDate,
+          reservationStartTime,
+          reservationEndTime,
+          stadiumId,
+          reservationId,
+        ]);
+        if (result.rowCount === 0) {
+          return true;
+        }
+        return false;
+      } else {
+        const sql = `SELECT * FROM reservations WHERE date =$1
+      AND ( (start_time >=$2 AND start_time < $3) OR (end_time>$2 AND end_time<$3 ) )
+    AND stadium_id = $4;`;
+        const result = await client.query(sql, [
+          reservationDate,
+          reservationStartTime,
+          reservationEndTime,
+          stadiumId,
+        ]);
+        if (result.rowCount === 0) {
+          return true;
+        }
+      }
+      return false;
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? 'Something went wrong';
+      throw new Error(errorMessage);
+    }
+  }
 
   async addReservation(reservation: Reservation): Promise<Reservation> {
     try {
@@ -49,6 +92,8 @@ class ReservationModel {
         reservation.total_price,
         reservation.payment_method,
       ]);
+      if (result.rows.length !== 1)
+        throw new Error('Something went wrong.Reservation not addeed');
       const newReservation = result.rows[0];
       return newReservation;
     } catch (err) {

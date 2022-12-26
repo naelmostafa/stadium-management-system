@@ -1,5 +1,5 @@
 import { User, UserModel } from './user';
-import { client, ResponseMessages} from '../../../config'; // this class communicate with the database
+import { client, ResponseMessages } from '../../../config'; // this class communicate with the database
 
 interface Customer extends User {
   balance: number;
@@ -47,7 +47,7 @@ class CustomerModel extends UserModel {
         const customer: Customer = {
           ...user,
           balance: result.rows[0].balance,
-        }
+        };
         return customer;
       } else {
         throw new Error('Register failed');
@@ -84,7 +84,7 @@ class CustomerModel extends UserModel {
     }
   }
 
-  async testPost(username:string, password:string ): Promise<string> {
+  async testPost(username: string, password: string): Promise<string> {
     try {
       return `Hello ${username} with password ${password}`;
     } catch (err) {
@@ -92,7 +92,6 @@ class CustomerModel extends UserModel {
       throw new Error(errorMessage);
     }
   }
-
 }
 
 export { Customer, CustomerModel };

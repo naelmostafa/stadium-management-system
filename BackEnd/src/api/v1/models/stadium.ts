@@ -21,15 +21,19 @@ enum StadiumStatus {
 class StadiumModel {
   async getAvailableStadiumsByDate(
     reservationDate: string,
-    reservationTime: string
+    reservationStartTime: string,
+    reservationEndTime: string
   ): Promise<Stadium[]> {
-    console.log(StadiumStatus.AVAILABLE.toString());
     // get all available stadiums that are not booked on the given date
     try {
-      const sql = `SELECT * FROM stadiums WHERE id NOT IN (SELECT stadium_id FROM reservations WHERE date = $1 AND $2 NOT BETWEEN start_time AND end_time) AND status LIKE $3`;
+      const sql = `SELECT * FROM stadiums WHERE id NOT IN
+       (SELECT stadium_id FROM reservations WHERE date = $1 AND 
+        ( (start_time >=$2 AND start_time < $3) OR (end_time>$2 AND end_time<$3 ) ))
+         AND status LIKE $4`;
       const result = await client.query(sql, [
         reservationDate,
-        reservationTime,
+        reservationStartTime,
+        reservationEndTime,
         StadiumStatus.AVAILABLE.toString(),
       ]);
       return result.rows;
@@ -109,7 +113,6 @@ class StadiumModel {
       const sql = `DELETE FROM stadiums WHERE id = $1 RETURNING *`;
       const result = await client.query(sql, [id]);
       return result.rowCount > 0;
-
     } catch (err) {
       const errorMessage = (err as Error)?.message ?? 'Something went wrong';
       throw new Error(errorMessage);

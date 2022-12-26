@@ -1,2 +1,2 @@
-export {CustomerAuthController} from './customer/customer_auth_controller';
-export {StadiumController} from './stadium/stadium_controller';
+export { CustomerAuthController } from './customer/customer_auth.controller';
+export { StadiumController } from './stadium/stadium.controller';

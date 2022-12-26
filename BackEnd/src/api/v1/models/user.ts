@@ -25,7 +25,7 @@ class UserModel {
           password,
           result.rows[0].password
         );
-        
+
         if (isPasswordCorrect) {
           // remove password from user object
           delete user.password;
@@ -51,15 +51,10 @@ class UserModel {
   ): Promise<User> {
     try {
       const saltRounds: number = parseInt(process.env.SALT_ROUNDS as string);
-     
-      const hash:string = await bcrypt.hash(password, saltRounds) as string;
-      const sql = `INSERT INTO users (name, email, password, phone_number) VALUES ($1, $2, $3, $4) RETURNING *`
-      const result = await client.query(sql, [
-        name,
-        email,
-        hash,
-        phoneNumber
-      ]);
+
+      const hash: string = (await bcrypt.hash(password, saltRounds)) as string;
+      const sql = `INSERT INTO users (name, email, password, phone_number) VALUES ($1, $2, $3, $4) RETURNING *`;
+      const result = await client.query(sql, [name, email, hash, phoneNumber]);
       if (result.rows.length == 1) {
         const user: User = result.rows[0];
         // remove password from user object

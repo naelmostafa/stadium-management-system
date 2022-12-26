@@ -3,7 +3,6 @@ import { ResponseMessages, StatusCodes } from '../../../../config';
 import { Customer, CustomerModel } from '../../models';
 
 class CustomerAuthController {
-
   public async login(req: Request, res: Response) {
     const customerModel = new CustomerModel();
     try {
@@ -38,16 +37,15 @@ class CustomerAuthController {
   }
 
   public async register(req: Request, res: Response) {
-    
     try {
       // check if body is valid and has email and password
 
-      const email:string = req.body.email ;
-      const password:string = req.body.password; 
-      const name:string = req.body.name;
-      const phone:string = req.body.phone;
-  
-      if(!this.validateRegisterBody(email,password,name,phone)){
+      const email: string = req.body.email;
+      const password: string = req.body.password;
+      const name: string = req.body.name;
+      const phone: string = req.body.phone;
+
+      if (!this.validateRegisterBody(email, password, name, phone)) {
         res.status(StatusCodes.BAD_REQUEST).json({
           status: StatusCodes.BAD_REQUEST,
           message: ResponseMessages.REGISTER_BODY_ERROR,
@@ -55,7 +53,7 @@ class CustomerAuthController {
         return;
       }
       const customerModel = new CustomerModel();
-    
+
       const customer: Customer = await customerModel.register(
         name,
         email,
@@ -137,28 +135,31 @@ class CustomerAuthController {
       });
     }
   }
-  
-  private validateRegisterBody(email: string,
-     password: string, name: string, phone: string) : boolean{
-   
+
+  private validateRegisterBody(
+    email: string,
+    password: string,
+    name: string,
+    phone: string
+  ): boolean {
     if (!(email && password && name && phone)) {
       return false;
     }
-   
-    if(!this.validateEmail(email)) {
-    return false;
+
+    if (!this.validateEmail(email)) {
+      return false;
+    }
+    // validayte password length
+    if (password.length < 6) {
+      return false;
+    }
+    // validate name length
+    if (name.trim().length == 0) {
+      return false;
+    }
+    return true;
   }
-  // validayte password length
-  if (password.length < 6) {
-    return false;
-  }
-  // validate name length
-  if (name.trim().length ==0) {
-    return false;
-  }
-  return true;
-  }
-  
+
   private validateEmail(email: string) {
     const re: RegExp = /\S+@\S+\.\S+/;
     return re.test(email);

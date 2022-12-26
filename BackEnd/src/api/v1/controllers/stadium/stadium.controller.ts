@@ -3,7 +3,7 @@ import { ResponseMessages, StatusCodes } from '../../../../config';
 import { Stadium, StadiumModel } from '../../models';
 
 export class StadiumController {
-  private stadiumModel: StadiumModel; 
+  private stadiumModel: StadiumModel;
   constructor() {
     this.stadiumModel = new StadiumModel();
   }
@@ -24,25 +24,44 @@ export class StadiumController {
       });
     }
   }
-  
+
   public async getAvailableStadiums(req: Request, res: Response) {
     try {
       let reservationDate = req.query.reservation_date;
-      let reservationTime = req.query.reservation_time;
+      let reservationStartTime = req.query.start_time;
+      let reservationEndTime = req.query.end_time;
       // validate reservationDate and reservationTime
-      if (!(reservationDate && reservationTime)) {
+      if (!(reservationDate && reservationStartTime && reservationEndTime)) {
         res.status(StatusCodes.BAD_REQUEST).json({
           status: StatusCodes.BAD_REQUEST,
           message: ResponseMessages.QUERY_PARAMS_ERROR,
         });
         return;
       }
+
       reservationDate = reservationDate.toString();
-      reservationTime = reservationTime.toString();
-      const stadiums: Stadium[] = await this.stadiumModel.getAvailableStadiumsByDate(
-        reservationDate,
-        reservationTime
-      );
+      reservationStartTime = reservationStartTime.toString();
+      reservationEndTime = reservationEndTime.toString();
+      if (
+        !this.validateTime(
+          reservationDate,
+          reservationStartTime,
+          reservationEndTime
+        )
+      ) {
+        res.status(StatusCodes.BAD_REQUEST).json({
+          status: StatusCodes.BAD_REQUEST,
+          message: ResponseMessages.RESERVATION_DATETIME_ERROR,
+        });
+        return;
+      }
+      // validate time
+      const stadiums: Stadium[] =
+        await this.stadiumModel.getAvailableStadiumsByDate(
+          reservationDate,
+          reservationStartTime,
+          reservationEndTime
+        );
       res.status(StatusCodes.OK).json({
         status: StatusCodes.OK,
         message: ResponseMessages.GET_STADIUMS_SUCCESS,
@@ -100,18 +119,19 @@ export class StadiumController {
   public async updateStadium(req: Request, res: Response) {
     /// TODO AUTHENTICATION
     try {
+      const stadiumId: number = req.params.id as unknown as number;
       let stadium: Stadium = req.body;
       // check if stadium id is provided
 
       // validate stadium fileds
-      if (!this.validateStadium(stadium) || !stadium.id || stadium.id < 0) {
+      if (!this.validateStadium(stadium) || !stadiumId || stadiumId < 0) {
         res.status(StatusCodes.BAD_REQUEST).json({
           status: StatusCodes.BAD_REQUEST,
           message: ResponseMessages.BODY_ERROR,
         });
         return;
       }
-      stadium = await this.stadiumModel.updateStadium(stadium.id,stadium);
+      stadium = await this.stadiumModel.updateStadium(stadiumId, stadium);
       if (stadium) {
         res.status(StatusCodes.OK).json({
           status: StatusCodes.OK,
@@ -139,7 +159,7 @@ export class StadiumController {
   public async deleteStadium(req: Request, res: Response) {
     /// TODO AUTHENTICATION
     try {
-      const stadiumId:number = (req.query.stadium_id as unknown) as number;
+      const stadiumId: number = req.params.stadium_id as unknown as number;
       // check if stadium id is provided
       if (!stadiumId || stadiumId < 0) {
         res.status(StatusCodes.BAD_REQUEST).json({
@@ -148,12 +168,13 @@ export class StadiumController {
         });
         return;
       }
-      const isDeleted:boolean = await this.stadiumModel.deleteStadium(stadiumId);
+      const isDeleted: boolean = await this.stadiumModel.deleteStadium(
+        stadiumId
+      );
       if (isDeleted) {
         res.status(StatusCodes.NO_CONTENT).send();
         return;
-      }
-      else {
+      } else {
         res.status(StatusCodes.BAD_REQUEST).json({
           status: StatusCodes.SERVICE_UNAVAILABLE,
           message: ResponseMessages.ERROR,
@@ -169,7 +190,6 @@ export class StadiumController {
     }
   }
 
-
   private validateStadium(stadium: Stadium): boolean {
     if (!stadium.cost_per_hour) return false;
     if (!stadium.description) return false;
@@ -179,6 +199,35 @@ export class StadiumController {
     if (!stadium.stadium_number && stadium.stadium_number < 0) return false;
     if (!stadium.status) return false;
 
+    return true;
+  }
+  private validateTime(
+    date: string,
+    startTime: string,
+    endTime: string
+  ): boolean {
+    // validate start_time and end_time
+    const dateSplit = date.split('-');
+    const year = dateSplit[0] as unknown as number;
+    const month = dateSplit[1] as unknown as number;
+    const day = dateSplit[2] as unknown as number;
+    const startHour = startTime.split(':')[0] as unknown as number;
+    const startMinute = startTime.split(':')[1] as unknown as number;
+    const endHour = endTime.split(':')[0] as unknown as number;
+    const endMinute = endTime.split(':')[1] as unknown as number;
+
+    const startTimeD = new Date(year, month - 1, day, startHour, startMinute);
+    const endTimeD = new Date(year, month - 1, day, endHour, endMinute);
+
+    if (startTimeD.getTime() >= endTimeD.getTime()) {
+      return false;
+    }
+    // validate date
+    const dateD = new Date(date);
+
+    if (dateD.getTime() < new Date().getTime()) {
+      return false;
+    }
     return true;
   }
 }
