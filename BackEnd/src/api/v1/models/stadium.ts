@@ -14,8 +14,8 @@ interface Stadium {
 
 // stadium status enum: available, unavailable
 enum StadiumStatus {
-  AVAILABLE,
-  UNAVAILABLE,
+  AVAILABLE = 'available',
+  UNAVAILABLE = 'unavailable',
 }
 
 class StadiumModel {
@@ -23,9 +23,10 @@ class StadiumModel {
     reservationDate: string,
     reservationTime: string
   ): Promise<Stadium[]> {
+    console.log(StadiumStatus.AVAILABLE.toString());
     // get all available stadiums that are not booked on the given date
     try {
-      const sql = `SELECT * FROM stadiums WHERE id NOT IN (SELECT stadium_id FROM reservations WHERE date = $1 AND $2 NOT BETWEEN start_time AND end_time) AND status = $3`;
+      const sql = `SELECT * FROM stadiums WHERE id NOT IN (SELECT stadium_id FROM reservations WHERE date = $1 AND $2 NOT BETWEEN start_time AND end_time) AND status LIKE $3`;
       const result = await client.query(sql, [
         reservationDate,
         reservationTime,

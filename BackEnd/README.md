@@ -91,6 +91,43 @@ Response Body On success:
 
 
 #### Stadium 
+##### Get all stadiums
+```bash
+GET /stadium/all
+```
+No body in request
+Response 
+```
+{
+    "status": 200,
+    "message": "stadiums fetched successfully",
+    "data": [
+        {
+            "id": 1,
+            "name": "stadium 1",
+            "description": "Beautiful stadium",
+            "size": 5,
+            "cost_per_hour": 200,
+            "location": "Smouha,Alexandria",
+            "photo": null,
+            "stadium_number": 2,
+            "status": "available"
+        },
+        {
+            "id": 2,
+            "name": "stadium 2",
+            "description": "Beautiful stadium",
+            "size": 5,
+            "cost_per_hour": 200,
+            "location": "Smouha,Alexandria",
+            "photo": null,
+            "stadium_number": 2,
+            "status": "available"
+        }
+    ]
+}
+```
+
 ##### Get Availble stadiums in the given date and time
 ```bash
 GET /stadiums/availbe-stadiums?reservation_date=2023-01-01&reservation_time=18:00

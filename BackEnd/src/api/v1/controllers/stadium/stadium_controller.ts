@@ -7,6 +7,23 @@ export class StadiumController {
   constructor() {
     this.stadiumModel = new StadiumModel();
   }
+
+  public async getAllStadiums(req: Request, res: Response) {
+    try {
+      const stadiums: Stadium[] = await this.stadiumModel.getAllStadiums();
+      res.status(StatusCodes.OK).json({
+        status: StatusCodes.OK,
+        message: ResponseMessages.GET_STADIUMS_SUCCESS,
+        data: stadiums,
+      });
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? ResponseMessages.ERROR;
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        message: errorMessage,
+      });
+    }
+  }
   
   public async getAvailableStadiums(req: Request, res: Response) {
     try {

@@ -6,9 +6,9 @@ CREATE TABLE IF NOT EXISTS users
 (
     id serial NOT NULL,
     name VARCHAR(256) NOT NULL,
-    email VARCHAR(256) NOT NULL,
+    email VARCHAR(256) NOT NULL UNIQUE,
     password VARCHAR(256) NOT NULL,
-    phone_number VARCHAR(16) NOT NULL,
+    phone_number VARCHAR(16) NOT NULL UNIQUE,
     profile_picture bytea,
     PRIMARY KEY (id)
 );
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS employee
 (
     id integer NOT NULL UNIQUE,
     salary FLOAT NOT NULL,
-    ssn VARCHAR(10) NOT NULL,
+    ssn VARCHAR(10) NOT NULL UNIQUE,
     PRIMARY KEY (id)
     );
 
