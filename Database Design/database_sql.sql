@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS users
     PRIMARY KEY (id)
 );
 
+
 CREATE TABLE IF NOT EXISTS admins
 (
     id integer NOT NULL UNIQUE,
@@ -83,7 +84,7 @@ ALTER TABLE IF EXISTS reservations
     ON DELETE CASCADE;
 
 ALTER TABLE IF EXISTS reservations
-    ADD CONSTRAINT customer_id_fk1 FOREIGN KEY (id)
+    ADD CONSTRAINT customer_id_fk1 FOREIGN KEY (customer_id)
     REFERENCES customer (id) 
     ON UPDATE CASCADE
     ON DELETE CASCADE;
