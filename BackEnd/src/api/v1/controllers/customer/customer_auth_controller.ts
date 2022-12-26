@@ -38,20 +38,28 @@ class CustomerAuthController {
   }
 
   public async register(req: Request, res: Response) {
-    const customerModel = new CustomerModel();
+    
     try {
-      const { email, password, name, phone } = req.body;
-      // validate email and password
-      if (!(email && password && name && phone)) {
+      // check if body is valid and has email and password
+
+      const email:string = req.body.email ;
+      const password:string = req.body.password; 
+      const name:string = req.body.name;
+      const phone:string = req.body.phone;
+  
+      if(!this.validateRegisterBody(email,password,name,phone)){
         res.status(StatusCodes.BAD_REQUEST).json({
           status: StatusCodes.BAD_REQUEST,
-          message: ResponseMessages.LOGIN_BODY_ERROR,
+          message: ResponseMessages.REGISTER_BODY_ERROR,
         });
+        return;
       }
+      const customerModel = new CustomerModel();
+    
       const customer: Customer = await customerModel.register(
+        name,
         email,
         password,
-        name,
         phone
       );
       if (customer) {
@@ -67,6 +75,7 @@ class CustomerAuthController {
         });
       }
     } catch (err) {
+      console.log(err);
       const errorMessage = (err as Error)?.message ?? ResponseMessages.ERROR;
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         status: StatusCodes.INTERNAL_SERVER_ERROR,
@@ -129,6 +138,31 @@ class CustomerAuthController {
     }
   }
   
+  private validateRegisterBody(email: string,
+     password: string, name: string, phone: string) : boolean{
+   
+    if (!(email && password && name && phone)) {
+      return false;
+    }
+   
+    if(!this.validateEmail(email)) {
+    return false;
+  }
+  // validayte password length
+  if (password.length < 6) {
+    return false;
+  }
+  // validate name length
+  if (name.trim().length ==0) {
+    return false;
+  }
+  return true;
+  }
+  
+  private validateEmail(email: string) {
+    const re: RegExp = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
 }
 
 export { CustomerAuthController };

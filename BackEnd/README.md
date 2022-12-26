@@ -46,10 +46,16 @@ Request Body:
 Response Body On success:
 ``` json
 {
-    "id": 1,
-    "email": ""
-    "name": "",
-    ...all other customer fields
+    "status": 200,
+    "message": "Loged in successfully",
+    "data": {
+        "id": 4,
+        "name": "omar",
+        "email": "test@test.com",
+        "phone_number": "01234567",
+        "profile_picture": null,
+        "balance": 0
+    }
 }
 ```
 
@@ -60,19 +66,25 @@ POST /customers/register
 Request Body:
 ``` json
 {
-    "email": "",
-    "password": "",
-    "name": "",
-    "phone": ""
+{
+    "email":"test@test.com",
+    "name":"omar",
+    "password":"1234567",
+    "phone":"0123456"
+}
 }
 ```
 Response Body On success:
 ``` json
 {
-    "id": 1,
-    "email": "",
-    "name": "",
-    ...all other customer fields
+    "status": 200,
+    "message": "Customer created successfully",
+    "data" : {
+    "email":"test@test.com",
+    "name":"omar",
+    "password":"1234567",
+    "phone":"0123456"
+}
 }
 ```
 ##### Update customer data (TODO)
@@ -103,21 +115,70 @@ POST /stadiums/add
 Request Body:
 ``` json
 {
-    "name":"",
-    "size": "",
-    "description": "",
-    ...all other stadium fields
+    "name":"stadium 1",
+    "description":"Beautiful stadium",
+    "size":5,
+    "location":"Smouha,Alexandria",
+    "cost_per_hour":200,
+    "stadium_number":2,
+    "status":"available"
 }
 ```
 
 Response Body On success:
 ``` json
 {
-    "id": 1
-    "name":"",
-    "size": "",
-    "description": "",
-    ...all other stadium fields
+    "status": 200,
+    "message": "stadiums fetched successfully",
+    "data": {
+        "id": 1,
+        "name": "stadium 1",
+        "description": "Beautiful stadium",
+        "size": 5,
+        "cost_per_hour": 200,
+        "location": "Smouha,Alexandria",
+        "photo": null,
+        "stadium_number": 2,
+        "status": "available"
+    }
 }
 ```
+
+##### Update Stadium (TODO: Authentication)
+```bash
+PUT /stadium/update
+```
+Request
+``` json
+{
+    "id": 1,
+    "name":"stadium 1",
+    "description":"Beautiful stadium",
+    "size":5,
+    "location":"Smouha,Alexandria",
+    "cost_per_hour":250,
+    "stadium_number":2,
+    "status":"available"
+}
+```
+Response on success
+```json
+{
+    "status": 200,
+    "message": "stadium updated successfully",
+    "data": {
+        "id": 1,
+        "name": "stadium 1",
+        "description": "Beautiful stadium",
+        "size": 5,
+        "cost_per_hour": 250,
+        "location": "Smouha,Alexandria",
+        "photo": null,
+        "stadium_number": 2,
+        "status": "available"
+    }
+}
+```
+
+
 

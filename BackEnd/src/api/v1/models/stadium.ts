@@ -25,7 +25,7 @@ class StadiumModel {
   ): Promise<Stadium[]> {
     // get all available stadiums that are not booked on the given date
     try {
-      const sql = `SELECT * FROM stadiums WHERE id NOT IN (SELECT stadium_id FROM reservations WHERE date = ? AND ? NOT BETWEEN start_time AND end_time) AND status = ?`;
+      const sql = `SELECT * FROM stadiums WHERE id NOT IN (SELECT stadium_id FROM reservations WHERE date = $1 AND $2 NOT BETWEEN start_time AND end_time) AND status = $3`;
       const result = await client.query(sql, [
         reservationDate,
         reservationTime,
@@ -50,7 +50,7 @@ class StadiumModel {
 
   async getStadiumById(id: number): Promise<Stadium> {
     try {
-      const sql = `SELECT * FROM stadiums WHERE id = ?`;
+      const sql = `SELECT * FROM stadiums WHERE id = $1`;
       const result = await client.query(sql, [id]);
       const stadium = result.rows[0];
       return stadium;
@@ -62,7 +62,7 @@ class StadiumModel {
 
   async addStadium(stadium: Stadium): Promise<Stadium> {
     try {
-      const sql = `INSERT INTO stadiums (name, description, size, location, cost_per_hour, stadium_number, status, photo) VALUES (?,?,?,?,?,?,?,?) RETURNING *`;
+      const sql = `INSERT INTO stadiums (name, description, size, location, cost_per_hour, stadium_number, status, photo) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
       const result = await client.query(sql, [
         stadium.name,
         stadium.description,
@@ -83,7 +83,7 @@ class StadiumModel {
 
   async updateStadium(id: number, stadium: Stadium): Promise<Stadium> {
     try {
-      const sql = `UPDATE stadiums SET name = ?, description = ?, size = ?, location = ?, cost_per_hour = ?, stadium_number = ?, status = ?, photo = ? WHERE id = ? RETURNING *`;
+      const sql = `UPDATE stadiums SET name =$1 , description = $2, size = $3, location = $4, cost_per_hour = $5, stadium_number = $6, status = $7, photo = $8 WHERE id = $9 RETURNING *`;
       const result = await client.query(sql, [
         stadium.name,
         stadium.description,
@@ -103,12 +103,12 @@ class StadiumModel {
     }
   }
 
-  async deleteStadium(id: number): Promise<Stadium> {
+  async deleteStadium(id: number): Promise<boolean> {
     try {
-      const sql = `DELETE FROM stadiums WHERE id = ? RETURNING *`;
+      const sql = `DELETE FROM stadiums WHERE id = $1 RETURNING *`;
       const result = await client.query(sql, [id]);
-      const deletedStadium = result.rows[0];
-      return deletedStadium;
+      return result.rowCount > 0;
+
     } catch (err) {
       const errorMessage = (err as Error)?.message ?? 'Something went wrong';
       throw new Error(errorMessage);

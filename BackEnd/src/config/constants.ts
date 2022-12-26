@@ -47,16 +47,19 @@ export const ResponseMessages = {
   STUDENT_NOT_FOUND: 'Student not found',
   STUDENT_ALREADY_REGISTERED: 'Student already registered',
   LOGIN_UNAUTHORIZED: 'Wrong username or password',
-  LOGIN_BODY_ERROR: 'Username and password are required',
+  LOGIN_BODY_ERROR: 'Email and password are not valid',
   ID_ERROR: 'Invalid id',
   NO_BODY_ERROR: 'No body',
   REGISTER_FAILED: 'Register failed',
   QUERY_PARAMS_ERROR: 'Query params are required',
   GET_STADIUMS_ERROR: 'Get stadiums error',
+  BODY_ERROR: 'Some or all of the body fields are missing',
+  REGISTER_BODY_ERROR: 'Email,password,phone or name are not valid',
   // Custom success messages
   LOGIN_SUCCESS: 'Loged in successfully',
   REGISTER_SUCCESS: 'Registered successfully',
   GET_STADIUMS_SUCCESS: 'stadiums fetched successfully',
+  UPDATE_STADIUM_SUCCESS: 'stadium updated successfully',
 };
 
 export const database = {
