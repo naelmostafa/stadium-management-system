@@ -1,10 +1,2 @@
-import express from 'express';
-import CustomerRoutes from './customer';
-import StadiumRoutes from './stadium';
-
-const routes = express.Router();
-
-routes.use('/customers', CustomerRoutes);
-routes.use('/stadiums', StadiumRoutes);
-
-export default routes;
+export { CustomerRoutes } from './customer/customer.routes';
+export { StadiumRoutes } from './stadium/stadium.routes';

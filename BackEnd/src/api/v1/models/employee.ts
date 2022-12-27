@@ -11,7 +11,7 @@ class EmployeeModel extends UserModel {
 
   async getSalary(id: number): Promise<number> {
     try {
-      const sql = `SELECT salary FROM employee WHERE id = ?`;
+      const sql = `SELECT salary FROM employee WHERE id = $1`;
       const result = await client.query(sql, [id]);
       if (result.rows.length == 1) {
         const salary: number = result.rows[0].salary;
@@ -27,7 +27,7 @@ class EmployeeModel extends UserModel {
 
   async getSSN(id: number): Promise<string> {
     try {
-      const sql = `SELECT ssn FROM employee WHERE id = ?`;
+      const sql = `SELECT ssn FROM employee WHERE id = #1`;
       const result = await client.query(sql, [id]);
       if (result.rows.length == 1) {
         const ssn: string = result.rows[0].ssn;

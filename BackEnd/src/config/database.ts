@@ -1,18 +1,13 @@
-import dotenv from 'dotenv';
 import { Pool } from 'pg';
-
-dotenv.config();
-
-const POSTGRES_HOST = process.env.POSTGRES_HOST;
-const POSTGRES_DB = process.env.POSTGRES_DB;
-const POSTGRES_USER = process.env.POSTGRES_USER;
-const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD;
+import { database } from './constants/app_constants';
+import pg from 'pg';
 
 const client = new Pool({
-  host: POSTGRES_HOST,
-  database: POSTGRES_DB,
-  user: POSTGRES_USER,
-  password: POSTGRES_PASSWORD,
+  host: database.HOST,
+  database: database.DATABASE,
+  user: database.USER,
+  password: database.PASSWORD,
 });
+pg.types.setTypeParser(1082, (value) => value);
 
 export { client };

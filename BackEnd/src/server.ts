@@ -1,26 +1,38 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import { logger } from './config';
 import dotenv from 'dotenv';
-import routes from './api/v1/routes';
 dotenv.config();
 
-const app = express();
+import express from 'express';
+import cors from 'cors';
+import { AppConstants, logger } from './config';
 
+const app = express();
 // adding cors middleware
 app.use(cors());
-
-// adding body parser middleware
+// adding json middleware
 app.use(express.json());
+// adding url encoded middleware
+app.use(express.urlencoded({ extended: true }));
 
-app.use(routes);
+// adding routes
+import { CustomerRoutes, StadiumRoutes } from './api/v1/routes';
+import { ReservationRoutes } from './api/v1/routes/reservation/reservation.routes';
 
-app.listen(3030, () => {
-  logger.info('Server started at http://localhost:3030');
-  logger.info('Press CTRL-C to stop\n');
+const customerRoutes: CustomerRoutes = new CustomerRoutes();
+const stadiumRoutes: StadiumRoutes = new StadiumRoutes();
+const reservationRoutes: ReservationRoutes = new ReservationRoutes();
+
+customerRoutes.routes(app);
+stadiumRoutes.routes(app);
+reservationRoutes.routes(app);
+
+// log available routes with method and path
+app._router.stack.forEach((r: any) => {
+  if (r.route && r.route.path) {
+    logger.info(`${Object.keys(r.route.methods)} ${r.route.path}`);
+  }
 });
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
 
-export default app;
+// start the Express server
+app.listen(AppConstants.PORT, () => {
+  logger.info(`server started at http://localhost:${AppConstants.PORT}`);
+});
