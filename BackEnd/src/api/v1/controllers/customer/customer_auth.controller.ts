@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { ResponseMessages, StatusCodes } from '../../../../config';
 import { Customer, CustomerModel } from '../../models';
+import { HelperFunction } from '../../utils';
 
 class CustomerAuthController {
   public async login(req: Request, res: Response) {
@@ -146,7 +147,7 @@ class CustomerAuthController {
       return false;
     }
 
-    if (!this.validateEmail(email)) {
+    if (!HelperFunction.validateEmail(email)) {
       return false;
     }
     // validayte password length
@@ -160,10 +161,6 @@ class CustomerAuthController {
     return true;
   }
 
-  private validateEmail(email: string) {
-    const re: RegExp = /\S+@\S+\.\S+/;
-    return re.test(email);
-  }
 }
 
 export { CustomerAuthController };

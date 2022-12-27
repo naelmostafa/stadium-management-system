@@ -2,7 +2,7 @@ import { client } from '../../../config'; // this class communicate with the dat
 import bcrypt from 'bcrypt'; // this class encrypt the password
 
 interface User {
-  id: number;
+  id?: number;
   name: string;
   email: string;
   password?: string;
