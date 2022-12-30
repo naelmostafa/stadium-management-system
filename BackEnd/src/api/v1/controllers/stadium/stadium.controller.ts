@@ -223,9 +223,8 @@ export class StadiumController {
       return false;
     }
     // validate date
-    const dateD = new Date(date);
-
-    if (dateD.getTime() < new Date().getTime()) {
+    const dateD = new Date(date + 'T' + startTime);
+    if (dateD.getTime() <= new Date().getTime()) {
       return false;
     }
     return true;
