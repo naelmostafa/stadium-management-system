@@ -51,8 +51,16 @@ body {
     width: 100%;
     padding: 20px;
     color: #fff;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin: 0 auto;
   }
   
   p {
     color: red;
   }
+
+
+.success{
+  color:white;
+}

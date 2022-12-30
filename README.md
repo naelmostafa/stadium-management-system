@@ -167,7 +167,7 @@ The project will be divided into 3 phases:
 
 ### Sequence diagram
 
-- Draw the sequence diagram of the system.
+![admin-sequence-diagram](../assets/admin-sequence.jpg)
 
 ### State diagram
 
