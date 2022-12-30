@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/Register.css";
+import styles from "../styles/Register.module.css";
 
 const Register = () => {
   const initialValues = {
@@ -56,7 +56,7 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       {Object.keys(formErrors).length === 0 && isSubmit ? (
         <div className="ui message success">Registration successful</div>
       ) : (

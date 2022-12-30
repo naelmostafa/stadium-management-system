@@ -1,11 +1,13 @@
 import React from "react";
+import  NavBar  from "./Navbar";
 
-const Home = () => {
-    return (
-        <div className="home">
-        <h1>Home</h1>
-        </div>
-    );
-};
+function Home() {
+  return (
+    <>
+      <NavBar />
+      <h1>Home</h1>
+    </>
+  );
+}
 
 export default Home;

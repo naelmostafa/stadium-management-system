@@ -1,6 +1,6 @@
 * {
     margin: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
     /* font-family: "CustomFont"; */
 }
 
@@ -15,6 +15,7 @@
     font-size: 0.75em;
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 
 .cover {
@@ -28,6 +29,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    margin: auto;
+    padding: 2ch;
+    
 }
 
 
@@ -40,13 +44,15 @@ input {
     text-align: center;
     padding: 2em;
     font-size: 0.75em;
+    align-items: center;
+
 }
 
 input:focus {
     outline-color: rgb(32, 177, 255);
 }
 
-.login-btn {
+.login_btn {
     width: 70%;
     height: 3em;
     background-color: rgb(32, 177, 255);
@@ -56,9 +62,10 @@ input:focus {
     transition: 0.5s;
     border-radius: 0.25em;
     cursor: pointer;
+    margin: 1vh;
 }
 
-.login-btn:hover { transform: scale(1.25);}
+.login_btn:hover { transform: scale(1.25);}
 
 .text {
     position: relative;
@@ -70,7 +77,7 @@ input:focus {
     transform: scale(0);
 }
 
-.login-popup {
+.login_popup {
     position: absolute;
     height: 20em;
     width: 20em;
