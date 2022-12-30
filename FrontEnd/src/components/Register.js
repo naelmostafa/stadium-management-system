@@ -29,7 +29,7 @@ const Register = () => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log("Form is valid");
     }
-  }, [formErrors]);
+  }, [formErrors, isSubmit]);
 
   const validate = (values) => {
     const errors = {};
