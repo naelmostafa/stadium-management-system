@@ -21,9 +21,9 @@ export const Navbar = ({ props }) => {
                     {props.title}
                 </h2>
                 <ul className="nav--ul">
-                    {props.links.map((link, index) => {
+                    {props.links.map((link) => {
                         return (
-                            <li key={index}>
+                            <li key={link.text}>
                                 <a href={link.url}>{link.text}</a>
                             </li>
                         )
