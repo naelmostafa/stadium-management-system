@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 
 
@@ -10,18 +9,33 @@ export const StadiumForm = () => {
     const [image, setImage] = useState("");
     const [price, setPrice] = useState(0);
 
-    const handle = async (stadium) => {
-        axios.post("http://localhost:5000/stadiums/add", stadium)
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err));
-
+    // reset the form
+    const resetForm = () => {
         setName("");
         setAddress("");
         setCity("");
         setDescription("");
         setImage("");
         setPrice(0);
+    };
 
+
+    const handle = async (stadium) => {
+        // make a post request to the server
+        try {
+            const response = await fetch("http://localhost:5000/stadiums", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(stadium),
+            });
+            const data = await response.json();
+            console.log(data);
+            resetForm();
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const handleSubmit = (e) => {
@@ -35,6 +49,7 @@ export const StadiumForm = () => {
             price,
         };
         handle(stadium);
+        console.log(stadium);
     };
 
     return (
