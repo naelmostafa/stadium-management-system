@@ -1,10 +1,11 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Register.module.css";
 
 const Register = () => {
   const initialValues = {
     name: "",
-    username: "",
+    phone: "",
     email: "",
     password: "",
   };
@@ -12,6 +13,7 @@ const Register = () => {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +24,20 @@ const Register = () => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
+  };
+
+  const handleApi = () => {
+    console.log("form values: ", formValues);
+
+    axios
+      .post("http://localhost:3030/api/v1/customer/register", formValues)
+      .then((res) => {
+        setIsReady(true);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -37,8 +53,8 @@ const Register = () => {
     if (!values.name) {
       errors.name = "Name is required";
     }
-    if (!values.username) {
-      errors.username = "Username is required";
+    if (!values.phone) {
+      errors.phone = "Phone is required";
     }
     if (!values.email) {
       errors.email = "Email is required";
@@ -57,12 +73,6 @@ const Register = () => {
 
   return (
     <div className={styles.container}>
-      {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success">Registration successful</div>
-      ) : (
-        <div></div>
-      )}
-      {/* // if form is valid, show success message, else show form values */}
       <form onSubmit={handleSubmit}>
         <h1>Registration Form</h1>
         <div className="ui divider"></div>
@@ -79,23 +89,23 @@ const Register = () => {
           </div>
           <p>{formErrors.name}</p>
           <div className="field">
-            <label>Username</label>
+            <label>Phone</label>
             <input
               type="text"
-              name="username"
-              placeholder="Username"
-              value={formValues.username}
+              name="phone"
+              placeholder="Phone number"
+              value={formValues.phone}
               onChange={handleChange}
             />
           </div>
-          <p>{formErrors.username}</p>
+          <p>{formErrors.phone}</p>
 
           <div className="field">
             <label>Email</label>
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="Email address"
               value={formValues.email}
               onChange={handleChange}
             />
@@ -114,9 +124,21 @@ const Register = () => {
           </div>
           <p>{formErrors.password}</p>
 
-          <button className="fluid ui button blue">Submit</button>
+          <button className="fluid ui button blue" onClick={handleApi}>
+            Submit
+          </button>
         </div>
       </form>
+      {Object.keys(formErrors).length === 0 && isSubmit ? (
+        <div className="success">
+          <br />
+          {isReady ? (
+            <h2>Registration successful!</h2>
+          ) : (
+            <h2>An error occurred while registration. </h2>
+          )}
+        </div>
+      ) : null}
     </div>
   );
 };
