@@ -20,6 +20,17 @@ code {
 
 }
 
+.admin--form{
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
 /* navbar.component css */
 nav {
   display: flex;

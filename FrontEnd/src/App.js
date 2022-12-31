@@ -10,6 +10,7 @@ import { AdminAddStadium } from "./components/admin-add-stadium.component";
 import { AdminViewStadiums } from "./components/admin-stadiums.component";
 import { AdminViewReservations } from "./components/admin-reservations.component";
 import { AdminViewUsers } from "./components/admin-users.component";
+import { AdminLogin } from "./components/admin-portal.component";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/reservations" element={<ReservationsList />} />
           <Route path="/fetch" element={<GetStadiums />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/add-stadium" element={<AdminDashboard body={<AdminAddStadium/>}  />} />
           <Route path="/view-stadiums" element={<AdminDashboard body={<AdminViewStadiums/>}  />} />
