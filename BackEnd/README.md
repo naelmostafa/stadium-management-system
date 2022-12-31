@@ -33,17 +33,22 @@
 #### Customers
 
 ##### Login
+
 ``` bash
 POST /customers/login
 ```
+
 Request Body:
+
 ``` json
 {
     "email": "",
     "password": ""
 }
 ```
+
 Response Body On success:
+
 ``` json
 {
     "status": 200,
@@ -60,21 +65,26 @@ Response Body On success:
 ```
 
 ##### Register
+
 ``` bash
 POST /customers/register
 ```
+
 Request Body:
+
 ``` json
-{
+
 {
     "email":"test@test.com",
     "name":"omar",
     "password":"1234567",
     "phone":"0123456"
 }
-}
+
 ```
+
 Response Body On success:
+
 ``` json
 {
     "status": 200,
@@ -87,17 +97,21 @@ Response Body On success:
 }
 }
 ```
+
 ##### Update customer data (TODO)
 
+#### Stadium
 
-#### Stadium 
 ##### Get all stadiums
+
 ```bash
 GET /stadium/all
 ```
+
 No body in request
-Response 
-```
+Response
+
+```json
 {
     "status": 200,
     "message": "stadiums fetched successfully",
@@ -129,12 +143,15 @@ Response
 ```
 
 ##### Get Availble stadiums in the given date and time
+
 ```bash
 GET /stadium/available-stadiums?reservation_date=2023-01-01&start_time=18:00&end_time=20:00
 ```
+
 No body in request
 
 Response Body On success:
+
 ``` json
 {
     "status": 200,
@@ -156,11 +173,13 @@ Response Body On success:
 ```
 
 ##### Add new Stdiums (TODO: Authentication)
+
 ```bash
 POST /stadiums/add
 ```
 
 Request Body:
+
 ``` json
 {
     "name":"stadium 1",
@@ -174,6 +193,7 @@ Request Body:
 ```
 
 Response Body On success:
+
 ``` json
 {
     "status": 200,
@@ -193,10 +213,13 @@ Response Body On success:
 ```
 
 ##### Update Stadium (TODO: Authentication)
+
 ```bash
 PUT /stadium/update
 ```
+
 Request
+
 ``` json
 {
     "id": 1,
@@ -209,7 +232,9 @@ Request
     "status":"available"
 }
 ```
+
 Response on success
+
 ```json
 {
     "status": 200,
@@ -231,10 +256,13 @@ Response on success
 #### Reservations
 
 ##### Add new reservation
+
 ```bash
 POST /reservation/add
 ```
+
 Request Body:
+
 ``` json
 {
    "customer_id":4,
@@ -248,7 +276,9 @@ Request Body:
 
 }
 ```
+
 Response Body On success:
+
 ``` json
 {
     "status": 201,
@@ -268,11 +298,14 @@ Response Body On success:
 ```
 
 ##### Get all reservations
+
 ```bash
 GET /reservations/all
 ```
+
 No body in request
 Response on success
+
 ```json
 {
     "status": 200,
@@ -303,11 +336,9 @@ Response on success
     ]
 }
 ```
+
 ##### Update reservation (TODO: Authentication)
-```bash
-PUT /reservation/:reservation_id/update
-```
-##### Update reservation (TODO: Authentication)
+
 ```bash
 PUT /reservation/:reservation_id/update
 ```
