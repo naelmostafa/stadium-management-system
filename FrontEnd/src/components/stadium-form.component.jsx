@@ -1,29 +1,43 @@
 import React, { useState } from "react";
+/* 
+    "name":"stadium 1",
+    "description":"Beautiful stadium",
+    "size":5,
+    "location":"Smouha,Alexandria",
+    "cost_per_hour":200,
+    "stadium_number":2,
+    "status":"available"
 
+
+*/
 
 export const StadiumForm = () => {
     const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
-    const [price, setPrice] = useState(0);
+    const [size, setSize] = useState(0);
+    const [location, setLocation] = useState("");
+    const [cost_per_hour, setCost_per_hour] = useState(0);
+    const [stadium_number, setStadium_number] = useState(0);
+    const [status, setStatus] = useState("");
 
     // reset the form
     const resetForm = () => {
         setName("");
-        setAddress("");
-        setCity("");
         setDescription("");
-        setImage("");
-        setPrice(0);
+        setSize(0);
+        setLocation("");
+        setCost_per_hour(0);
+        setStadium_number(0);
+        setStatus("");
+
     };
 
 
     const handle = async (stadium) => {
         // make a post request to the server
+        // TODO: add api url
         try {
-            const response = await fetch("http://localhost:5000/stadiums", {
+            const response = await fetch("http://localhost:3000/stadiums", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -42,11 +56,12 @@ export const StadiumForm = () => {
         e.preventDefault();
         const stadium = {
             name,
-            address,
-            city,
             description,
-            image,
-            price,
+            size,
+            location,
+            cost_per_hour,
+            stadium_number,
+            status,
         };
         handle(stadium);
         console.log(stadium);
@@ -68,26 +83,6 @@ export const StadiumForm = () => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="address">Address</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="address"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="city">City</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="city"
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
                         <label htmlFor="description">Description</label>
                         <input
                             type="text"
@@ -98,23 +93,53 @@ export const StadiumForm = () => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="price">Price</label>
+                        <label htmlFor="size">Size</label>
                         <input
                             type="number"
                             className="form-control"
-                            id="price"
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
+                            id="size"
+                            value={size}
+                            onChange={(e) => setSize(e.target.value)}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="image">Image</label>
+                        <label htmlFor="location">Location</label>
                         <input
-                            type="file"
+                            type="text"
                             className="form-control"
-                            id="image"
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)}
+                            id="location"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="cost_per_hour">Cost Per Hour</label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="cost_per_hour"
+                            value={cost_per_hour}
+                            onChange={(e) => setCost_per_hour(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="stadium_number">Stadium Number</label>
+                        <input
+                            type="number"
+                            className="form-control"
+                            id="stadium_number"
+                            value={stadium_number}
+                            onChange={(e) => setStadium_number(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="status">Status</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="status"
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
                         />
                     </div>
                     <button className="form--button" type="submit">
