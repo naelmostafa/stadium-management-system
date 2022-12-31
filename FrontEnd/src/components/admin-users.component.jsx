@@ -2,41 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container } from "react-bootstrap";
 
-/* 
-    "data": {
-        "id": 4,
-        "name": "omar",
-        "email": "test@test.com",
-        "phone_number": "01234567",
-        "profile_picture": null,
-        "balance": 0
-    }
-*/
-
-
 
 export const AdminViewUsers = () => {
 
-
-    const [users, setUsers] = useState([
-        // {
-        //     "id": "1",
-        //     "name": "test",
-        //     "email": "test@gmail.com",
-        //     "phone_number": "002215556",
-        //     "profile_picture": "test.png",
-        //     "balance": "20.0"
-        // }
-        // ,
-        // {
-        //     "id": "2",
-        //     "name": "test2",
-        //     "email": "test2@gmail.com",
-        //     "phone_number": "002215556",
-        //     "profile_picture": "test2.png",
-        //     "balance": "20.0"
-        // }
-    ]);
+    const [users, setUsers] = useState([]);
 
     const getUsers = () => {
         axios.get("http://localhost:3030/api/v1/admin/customers")

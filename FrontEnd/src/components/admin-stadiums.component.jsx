@@ -3,61 +3,9 @@ import axios from "axios";
 import { Button, Container } from "react-bootstrap";
 
 
-
-/* 
-    "data": [
-        {
-            "id": 1,
-            "name": "stadium 1",
-            "description": "Beautiful stadium",
-            "size": 5,
-            "cost_per_hour": 200,
-            "location": "Smouha,Alexandria",
-            "photo": null,
-            "stadium_number": 2,
-            "status": "available"
-        },
-        {
-            "id": 2,
-            "name": "stadium 2",
-            "description": "Beautiful stadium",
-            "size": 5,
-            "cost_per_hour": 200,
-            "location": "Smouha,Alexandria",
-            "photo": null,
-            "stadium_number": 2,
-            "status": "available"
-        }
-
-*/
-
 export const AdminViewStadiums = () => {
 
-
-    const [stadiums, setStadiums] = useState([
-        // {
-        //     "id": 1,
-        //     "name": "stadium 1",
-        //     "description": "Beautiful stadium",
-        //     "size": 5,
-        //     "cost_per_hour": 200,
-        //     "location": "Smouha,Alexandria",
-        //     "photo": null,
-        //     "stadium_number": 2,
-        //     "status": "available"
-        // },
-        {
-            "id": 2,
-            "name": "stadium 2",
-            "description": "Beautiful stadium",
-            "size": 5,
-            "cost_per_hour": 200,
-            "location": "Smouha,Alexandria",
-            "photo": null,
-            "stadium_number": 2,
-            "status": "available"
-        }
-    ]);
+    const [stadiums, setStadiums] = useState([]);
 
     const getStadiums = () => {
 
@@ -102,22 +50,22 @@ export const AdminViewStadiums = () => {
                     </thead>
                     <tbody>
                         {
-                        stadiums.map((stadium) => (
-                            <tr key={stadium.id}>
-                                <td>{stadium.name}</td>
-                                <td>{stadium.description}</td>
-                                <td>{stadium.size}</td>
-                                <td>{stadium.cost_per_hour}</td>
-                                <td>{stadium.location}</td>
-                                <td>{stadium.photo}</td>
-                                <td>{stadium.status}</td>
-                                <td>
-                                    <Button variant="danger" size="sm" onClick={() => deleteStadium(stadium.id)}>Delete</Button>
-                                </td>
-                            </tr>
-                        )
+                            stadiums.map((stadium) => (
+                                <tr key={stadium.id}>
+                                    <td>{stadium.name}</td>
+                                    <td>{stadium.description}</td>
+                                    <td>{stadium.size}</td>
+                                    <td>{stadium.cost_per_hour}</td>
+                                    <td>{stadium.location}</td>
+                                    <td>{stadium.photo}</td>
+                                    <td>{stadium.status}</td>
+                                    <td>
+                                        <Button variant="danger" size="sm" onClick={() => deleteStadium(stadium.id)}>Delete</Button>
+                                    </td>
+                                </tr>
+                            )
 
-                        )}
+                            )}
                     </tbody>
                 </table>
             </Container>
@@ -125,6 +73,5 @@ export const AdminViewStadiums = () => {
 
 
     )
-
 
 }

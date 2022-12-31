@@ -2,8 +2,6 @@ import React from "react"
 import { Navbar } from "./navbar.component";
 
 
-
-
 export const AdminDashboard = (props) => {
 
     const navLinks = {

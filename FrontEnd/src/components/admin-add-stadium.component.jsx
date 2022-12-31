@@ -23,24 +23,19 @@ export const AdminAddStadium = () => {
         setCost_per_hour(0);
         setStadium_number(0);
         setStatus("");
-        isError(false);
     };
 
 
     const handle = async (stadium) => {
         // add api url here
-        try {
-            const res = await axios.post(
-                "http://localhost:3030/api/v1/stadium/add",
-                stadium
-            );
-            resetForm();
-          
-                
-        } catch (err) {
-            console.log(err);
-           
-        }
+        axios.post("http://localhost:3030/api/v1/stadium/add", stadium)
+            .then((res) => {
+                console.log(res);
+                resetForm();
+            }
+            )
+            .catch((err) => console.log(err));
+
     }
 
     const handleSubmit = (e) => {

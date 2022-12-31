@@ -3,32 +3,9 @@ import axios from "axios";
 import { Container } from "react-bootstrap";
 
 
-/* 
-{
-    "customer_id":4,
-    "date": "2023-01-01",
-    "start_time" : "22:00",
-    "end_time":"00:00",
-    "stadium_id" : 2,
-    "deposit" : 50,
-    "total_price":400,
-    "payment_method":"visa"
-}
-*/
-
 export const AdminViewReservations = () => {
-    const [reservations, setReservations] = useState([
-        {
-            "customer_id": 4,
-            "date": "2023-01-01",
-            "start_time": "22:00",
-            "end_time": "00:00",
-            "stadium_id": 2,
-            "deposit": 50,
-            "total_price": 400,
-            "payment_method": "visa"
-        }
-    ]);
+    
+    const [reservations, setReservations] = useState([]);
 
     const getReservations = () => {
         axios.get("http://localhost:3030/api/v1/reservations")
