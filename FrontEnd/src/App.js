@@ -11,6 +11,7 @@ import { AdminViewStadiums } from "./components/admin-stadiums.component";
 import { AdminViewReservations } from "./components/admin-reservations.component";
 import { AdminViewUsers } from "./components/admin-users.component";
 import { AdminLogin } from "./components/admin-portal.component";
+import { AdminHome } from "./components/admin-home.component";
 
 function App() {
   return (
@@ -23,11 +24,11 @@ function App() {
           <Route path="/reservations" element={<ReservationsList />} />
           <Route path="/fetch" element={<GetStadiums />} />
           <Route path="/admin-login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/add-stadium" element={<AdminDashboard body={<AdminAddStadium/>}  />} />
-          <Route path="/view-stadiums" element={<AdminDashboard body={<AdminViewStadiums/>}  />} />
-          <Route path="/view-users" element={<AdminDashboard body={<AdminViewUsers/>}  />} />
-          <Route path="/view-reservations" element={<AdminDashboard body={<AdminViewReservations/>}  />} />
+          <Route path="/admin" element={<AdminDashboard body={<AdminHome />} />} />
+          <Route path="/add-stadium" element={<AdminDashboard body={<AdminAddStadium />} />} />
+          <Route path="/view-stadiums" element={<AdminDashboard body={<AdminViewStadiums />} />} />
+          <Route path="/view-users" element={<AdminDashboard body={<AdminViewUsers />} />} />
+          <Route path="/view-reservations" element={<AdminDashboard body={<AdminViewReservations />} />} />
 
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
