@@ -20,31 +20,6 @@ code {
   padding-top: 20px;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 100px;
-  background-color: #282c34;
-  color: white;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-}
-
-.nav--title {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.nav--ul {
-  display: flex;
-  list-style: none;
-}
-
-.nav--ul>li>a {
-  /* hover */
-  margin: 0 10px;
-  color: #fff;
-}
 
 .sidebar {
   height: 100%;

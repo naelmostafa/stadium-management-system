@@ -265,14 +265,14 @@ Request Body:
 
 ``` json
 {
-   "customer_id":4,
-        "date": "2023-01-01",
-        "start_time" : "22:00",
-        "end_time":"00:00",
-        "stadium_id" : 2,
-        "deposit" : 50,
-        "total_price":400,
-        "payment_method":"visa"
+    "customer_id":4,
+    "date": "2023-01-01",
+    "start_time" : "22:00",
+    "end_time":"00:00",
+    "stadium_id" : 2,
+    "deposit" : 50,
+    "total_price":400,
+    "payment_method":"visa"
 
 }
 ```

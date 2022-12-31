@@ -76,7 +76,6 @@ const Register = () => {
       <form onSubmit={handleSubmit}>
         <h1>Registration Form</h1>
         <div className="ui divider"></div>
-        <div className="ui form">
           <div className="field">
             <label>Name</label>
             <input
@@ -124,10 +123,9 @@ const Register = () => {
           </div>
           <p>{formErrors.password}</p>
 
-          <button className="fluid ui button blue" onClick={handleApi}>
+          <button className="btn btn-primary" onClick={handleApi}>
             Submit
           </button>
-        </div>
       </form>
       {Object.keys(formErrors).length === 0 && isSubmit ? (
         <div className="success">
