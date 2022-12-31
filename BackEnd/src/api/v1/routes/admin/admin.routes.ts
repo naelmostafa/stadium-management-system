@@ -2,7 +2,7 @@ import express from 'express';
 import { AppConstants } from '../../../../config';
 import { AdminController } from '../../controllers/admin/admin.controller';
 
-class AdminRoutes {
+export class AdminRoutes {
   private adminController: AdminController;
   private static ADMIN_ROUTE: string =
     AppConstants.API_PREFIX + 'admin/';
@@ -47,8 +47,14 @@ class AdminRoutes {
         )
       );
 
-      // TODO get revenue routes
+      // get all customers
+      app
+      .route(AdminRoutes.ADMIN_ROUTE + 'customers')
+      .get(
+        this.adminController.getAllCustomers.bind(
+          this.adminController
+        )
+      );
   }
 }
 
-export { AdminRoutes as ReservationRoutes };

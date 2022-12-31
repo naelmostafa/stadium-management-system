@@ -31,7 +31,7 @@ export const AdminViewReservations = () => {
     ]);
 
     const getReservations = () => {
-        axios.get("http://localhost:3000/api/v1/reservations")
+        axios.get("http://localhost:3030/api/v1/reservations")
             .then((response) => {
                 setReservations(response.data);
             })

@@ -35,17 +35,17 @@ export const AdminViewStadiums = () => {
 
 
     const [stadiums, setStadiums] = useState([
-        {
-            "id": 1,
-            "name": "stadium 1",
-            "description": "Beautiful stadium",
-            "size": 5,
-            "cost_per_hour": 200,
-            "location": "Smouha,Alexandria",
-            "photo": null,
-            "stadium_number": 2,
-            "status": "available"
-        },
+        // {
+        //     "id": 1,
+        //     "name": "stadium 1",
+        //     "description": "Beautiful stadium",
+        //     "size": 5,
+        //     "cost_per_hour": 200,
+        //     "location": "Smouha,Alexandria",
+        //     "photo": null,
+        //     "stadium_number": 2,
+        //     "status": "available"
+        // },
         {
             "id": 2,
             "name": "stadium 2",
@@ -61,9 +61,9 @@ export const AdminViewStadiums = () => {
 
     const getStadiums = () => {
 
-        axios.get("http://localhost:3000/api/v1/stadiums")
+        axios.get("http://localhost:3030/api/v1/stadium/all")
             .then(res => {
-                setStadiums(res.data);
+                setStadiums(res.data['data']);
             })
             .catch(err => console.log(err));
 
@@ -74,7 +74,7 @@ export const AdminViewStadiums = () => {
     }, []);
 
     const deleteStadium = (id) => {
-        axios.delete(`http://localhost:3000/stadiums/${id}`)
+        axios.delete(`http://localhost:3030/stadium/${id}/delete`)
             .then(res => {
                 console.log(res);
                 getStadiums();
@@ -101,7 +101,8 @@ export const AdminViewStadiums = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {stadiums.map((stadium) => (
+                        {
+                        stadiums.map((stadium) => (
                             <tr key={stadium.id}>
                                 <td>{stadium.name}</td>
                                 <td>{stadium.description}</td>

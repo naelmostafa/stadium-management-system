@@ -13,6 +13,7 @@ export const AdminAddStadium = () => {
     const [stadium_number, setStadium_number] = useState(0);
     const [status, setStatus] = useState("");
 
+
     // reset the form
     const resetForm = () => {
         setName("");
@@ -22,7 +23,7 @@ export const AdminAddStadium = () => {
         setCost_per_hour(0);
         setStadium_number(0);
         setStatus("");
-
+        isError(false);
     };
 
 
@@ -30,13 +31,15 @@ export const AdminAddStadium = () => {
         // add api url here
         try {
             const res = await axios.post(
-                "http://localhost:3000/api/v1/stadium/add",
+                "http://localhost:3030/api/v1/stadium/add",
                 stadium
             );
-            console.log(res.data);
             resetForm();
+          
+                
         } catch (err) {
             console.log(err);
+           
         }
     }
 

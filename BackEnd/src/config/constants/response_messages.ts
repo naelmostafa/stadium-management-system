@@ -50,4 +50,5 @@ export const ResponseMessages = {
   UPDATE_STADIUM_SUCCESS: 'stadium updated successfully',
   GET_RESERVATIONS_SUCCESS: 'reservations fetched successfully',
   UPDATE_RESERVATION_SUCCESS: 'reservation updated successfully',
+  CUSTOMERS_FETCHED: 'customers fetched successfully',
 };

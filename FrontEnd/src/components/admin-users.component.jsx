@@ -19,29 +19,29 @@ export const AdminViewUsers = () => {
 
 
     const [users, setUsers] = useState([
-        {
-            "id": "1",
-            "name": "test",
-            "email": "test@gmail.com",
-            "phone_number": "002215556",
-            "profile_picture": "test.png",
-            "balance": "20.0"
-        }
-        ,
-        {
-            "id": "2",
-            "name": "test2",
-            "email": "test2@gmail.com",
-            "phone_number": "002215556",
-            "profile_picture": "test2.png",
-            "balance": "20.0"
-        }
+        // {
+        //     "id": "1",
+        //     "name": "test",
+        //     "email": "test@gmail.com",
+        //     "phone_number": "002215556",
+        //     "profile_picture": "test.png",
+        //     "balance": "20.0"
+        // }
+        // ,
+        // {
+        //     "id": "2",
+        //     "name": "test2",
+        //     "email": "test2@gmail.com",
+        //     "phone_number": "002215556",
+        //     "profile_picture": "test2.png",
+        //     "balance": "20.0"
+        // }
     ]);
 
     const getUsers = () => {
-        axios.get("http://localhost:3000/api/v1/users")
+        axios.get("http://localhost:3030/api/v1/admin/customers")
             .then((response) => {
-                setUsers(response.data);
+                setUsers(response.data['data']);
             })
             .catch((error) => {
                 console.log(error);

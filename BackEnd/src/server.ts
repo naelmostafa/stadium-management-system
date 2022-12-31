@@ -16,15 +16,17 @@ app.use(express.urlencoded({ extended: true }));
 // adding routes
 import { CustomerRoutes, StadiumRoutes } from './api/v1/routes';
 import { ReservationRoutes } from './api/v1/routes/reservation/reservation.routes';
+import {AdminRoutes} from './api/v1/routes/admin/admin.routes';
 
 const customerRoutes: CustomerRoutes = new CustomerRoutes();
 const stadiumRoutes: StadiumRoutes = new StadiumRoutes();
 const reservationRoutes: ReservationRoutes = new ReservationRoutes();
+const adminRoutes: AdminRoutes = new AdminRoutes();
 
 customerRoutes.routes(app);
 stadiumRoutes.routes(app);
 reservationRoutes.routes(app);
-
+adminRoutes.routes(app);
 // log available routes with method and path
 app._router.stack.forEach((r: any) => {
   if (r.route && r.route.path) {

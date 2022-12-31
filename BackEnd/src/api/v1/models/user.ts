@@ -7,7 +7,7 @@ interface User {
   email: string;
   password?: string;
   phone_number: string;
-  profilePicture: string;
+  profile_picture?: string;
 }
 
 // this class communicate with the database

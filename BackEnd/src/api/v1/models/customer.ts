@@ -7,6 +7,31 @@ interface Customer extends User {
 
 class CustomerModel extends UserModel {
   // ...
+  async getAllCustomers(): Promise<Customer[]> {
+    try {
+      const sql = `SELECT * FROM users INNER JOIN customer ON users.id = customer.id`;
+      const result = await client.query(sql);
+      const customers:Customer[] = result.rows.map((row) => {
+        const customer: Customer = {
+          id: row.id,
+          name: row.name,
+          email: row.email,
+          phone_number: row.phone_number,
+          profile_picture: row.profile_picture,
+          balance: row.balance,
+
+        };
+        return customer;
+      });
+      return customers;
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? 'Something went wrong';
+      throw new Error(errorMessage);
+    }
+  }
+     
+
+   
   // login
   async login(email: string, password: string): Promise<Customer> {
     try {

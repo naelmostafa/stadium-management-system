@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { Admin, AdminModel, Employee, EmployeeModel } from "../../models";
+import { Admin, AdminModel, Customer, CustomerModel, Employee, EmployeeModel } from "../../models";
 import { StatusCodes,ResponseMessages } from "../../../../config";
 import { HelperFunction } from "../../utils";
 
@@ -132,6 +132,27 @@ export class AdminController {
                       message: errorMessage,
                     });
                   } 
+              }
+
+              public async getAllCustomers(req:Request , res:Response){
+                try{
+                    const customerModel:CustomerModel = new CustomerModel();
+                    const customers: Customer[] = await customerModel.getAllCustomers();
+                    res.status(StatusCodes.OK).json({
+
+                        status: StatusCodes.OK,
+                        message: ResponseMessages.CUSTOMERS_FETCHED,
+                        data : customers
+                      });
+                      return;
+                }
+                catch (err) {
+                    const errorMessage = (err as Error)?.message ?? ResponseMessages.ERROR;
+                    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                      status: StatusCodes.INTERNAL_SERVER_ERROR,
+                      message: errorMessage,
+                    });
+                  }
               }
 
 
