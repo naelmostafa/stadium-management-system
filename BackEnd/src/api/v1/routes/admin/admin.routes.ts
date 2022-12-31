@@ -20,8 +20,8 @@ export class AdminRoutes {
         )
       );
 
-      // create a new admin all admin fields must be in body of request
-      app
+    // create a new admin all admin fields must be in body of request
+    app
       .route(AdminRoutes.ADMIN_ROUTE + 'add-admin')
       .post(
         this.adminController.addAdmin.bind(
@@ -29,8 +29,8 @@ export class AdminRoutes {
         )
       );
 
-      // create a new employee all admin fields must be in body of request
-      app
+    // create a new employee all admin fields must be in body of request
+    app
       .route(AdminRoutes.ADMIN_ROUTE + 'add-employee')
       .post(
         this.adminController.addEmployee.bind(
@@ -38,8 +38,8 @@ export class AdminRoutes {
         )
       );
 
-      // get all emolyees
-      app
+    // get all emolyees
+    app
       .route(AdminRoutes.ADMIN_ROUTE + 'employees')
       .get(
         this.adminController.getAllEmployees.bind(
@@ -47,11 +47,20 @@ export class AdminRoutes {
         )
       );
 
-      // get all customers
-      app
+    // get all customers
+    app
       .route(AdminRoutes.ADMIN_ROUTE + 'customers')
       .get(
         this.adminController.getAllCustomers.bind(
+          this.adminController
+        )
+      );
+
+    // get revenue for all past dates
+    app
+      .route(AdminRoutes.ADMIN_ROUTE + 'revenue')
+      .get(
+        this.adminController.getRevnueForPastDates.bind(
           this.adminController
         )
       );

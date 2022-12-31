@@ -51,4 +51,5 @@ export const ResponseMessages = {
   GET_RESERVATIONS_SUCCESS: 'reservations fetched successfully',
   UPDATE_RESERVATION_SUCCESS: 'reservation updated successfully',
   CUSTOMERS_FETCHED: 'customers fetched successfully',
+  GET_REVENUE_SUCCESS: 'revenue fetched successfully',
 };

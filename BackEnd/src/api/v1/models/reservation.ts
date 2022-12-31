@@ -12,6 +12,12 @@ interface Reservation {
   payment_method: string;
 }
 
+interface RevenueForPastDays {
+  id?: number;
+  date: string;
+  revenue: number;
+}
+
 class ReservationModel {
   async getAllReservations(): Promise<Reservation[]> {
     try {
@@ -138,6 +144,71 @@ class ReservationModel {
       throw new Error(errorMessage);
     }
   }
+
+  // calculate revenue
+  async getRevenue(): Promise<number> {
+    try {
+      const sql = `SELECT SUM(total_price) FROM reservations`;
+      const result = await client.query(sql);
+      const revenue = result.rows[0].sum;
+      return revenue;
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? 'Something went wrong';
+      throw new Error(errorMessage);
+    }
+  }
+
+  // calculate revenue for each past day (last 30 days) and return an array of objects
+  async getRevenueForPastDays(): Promise<RevenueForPastDays[]> {
+    try {
+      const sql = `SELECT date, SUM(total_price) FROM reservations WHERE date >= NOW() - INTERVAL '30 days' GROUP BY date ORDER BY date ASC`;
+      const result = await client.query(sql);
+      const revenueForPastDays = result.rows;
+      return revenueForPastDays;
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? 'Something went wrong';
+      throw new Error(errorMessage);
+    }
+  }
+  // calculate number of reservations for each stadium
+  async getNumberOfReservationsForStadium(stadiumId: number): Promise<number> {
+    try {
+      const sql = `SELECT COUNT(*) FROM reservations WHERE stadium_id = $1`;
+      const
+        result = await client.query(sql, [stadiumId]);
+      const numberOfReservations = result.rows[0].count;
+      return numberOfReservations;
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? 'Something went wrong';
+      throw new Error(errorMessage);
+    }
+  }
+
+  // calculate revenue for each stadium
+  async getRevenueForStadium(stadiumId: number): Promise<number> {
+    try {
+      const sql = `SELECT SUM(total_price) FROM reservations WHERE stadium_id = $1`;
+      const result = await client.query(sql, [stadiumId]);
+      const revenue = result.rows[0].sum;
+      return revenue;
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? 'Something went wrong';
+      throw new Error(errorMessage);
+    }
+  }
+  // calculate revenue per day
+  async getRevenuePerDay(date: string): Promise<number> {
+    try {
+      const sql = `SELECT SUM(total_price) FROM reservations WHERE date = $1`;
+      const result = await client.query(sql, [date]);
+      const revenue = result.rows[0].sum;
+      return revenue;
+    } catch (err) {
+      const errorMessage = (err as Error)?.message ?? 'Something went wrong';
+      throw new Error(errorMessage);
+    }
+  }
+
 }
 
 export { Reservation, ReservationModel };
