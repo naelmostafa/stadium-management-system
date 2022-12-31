@@ -52,11 +52,17 @@ function GetStadiums(props) {
     ).then((response) => {
       console.log(response);
       // show alert
+      if(response.status < 300){
       alert("Reservation added successfully");
       // refresh page
-      window.location.reload();
+      window.location.reload();}
+      else
+      alert("Reservation failed "+response.data["message"]);
+      
     }, (error) => {
       console.log(error);
+      alert("Reservation failed ");
+
     });
   };
 
