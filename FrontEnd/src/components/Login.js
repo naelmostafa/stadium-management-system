@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../styles/Login.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const initialValues = {
@@ -12,6 +13,7 @@ const Login = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [msg, setMsg] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,7 +71,7 @@ const Login = () => {
       .then((res) => {
         if (res.status === 200) {
           setMsg("You logged in successfully!");
-          // navigate("/profile");
+          navigate("/",{state: {customer : res.data['data']}});
           console.log(res);
           return res.data;
         }

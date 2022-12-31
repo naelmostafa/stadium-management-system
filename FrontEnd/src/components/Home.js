@@ -5,6 +5,9 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import styles from "../styles/Home.module.css";
 import GetStadiums from "./GetStadiums";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Home() {
   // get current date in yyyy-mm-dd format as a string
@@ -41,16 +44,16 @@ function Home() {
   const startTime = hours + ":" + minutes;
   const endTime = hoursEnd  + ":" + minutes;
   
-
+  const location  = useLocation();
+  const navigate = useNavigate();
   const [stadiums, setStadiums] = useState([]);
   const [reservationDate, setReservationDate] = useState(date);
   const [reservationStartTime, setReservationStartTime] = useState(startTime);
   const [reservationEndTime, setReservationEndTime] = useState(endTime);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  console.log(reservationDate);
-  console.log(reservationStartTime);
-  console.log(reservationEndTime);
+
+  const customer = location?.state?.customer ?? null;
 
 
 
@@ -88,11 +91,12 @@ function Home() {
                                 text: "Home",
                                 url: "/",
                             },
-                           
+                
                             {
-                                text: "Login",
-                                url: "/login",
+                                text: customer==null?"Login":"Hello "+customer.name,
+                                url: customer==null?"/login":"/",
                             },
+                          
                         ],
                     }}
                 />
@@ -134,7 +138,7 @@ function Home() {
       </Form>
 
       <br />
-      <GetStadiums reservation_date={reservationDate} start_time={reservationStartTime} end_time={reservationEndTime} stadiums={stadiums} />
+      <GetStadiums reservation_date={reservationDate} start_time={reservationStartTime} end_time={reservationEndTime} stadiums={stadiums} customer_id={customer?.id} />
       
 
 
