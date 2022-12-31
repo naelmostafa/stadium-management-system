@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import styles from "../styles/GetStadium.module.css";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
-function GetStadiums() {
+function GetStadiums(props) {
+  console.log('GetStadiums');
+  console.log(props.reservation_date);
   const [state, setState] = useState([]);
 
   //   const fetchData = async () => {
@@ -14,7 +19,7 @@ function GetStadiums() {
 
   const fetchStadiums = async () => {
     const res = await axios.get(
-      "http://localhost:3030/api/v1/stadium/available-stadiums?reservation_date=2023-01-01&start_time=18:00&end_time=20:00"
+      "http://localhost:3030/api/v1/stadium/available-stadiums?reservation_date="+props.reservation_date+"&start_time="+props.start_time+"&end_time="+props.end_time
     );
     setState(res.data.data);
     console.log(res.data.data);
@@ -25,19 +30,37 @@ function GetStadiums() {
   }, []);
 
   return (
-    <div>
+    <>
+    <ul className={styles.ul}>
       {state.map((item) => {
         return (
-          <>
-            <div>{item.name}</div>
-            <div>{item.description}</div>
-            <div>{item.size}</div>
-            <div>{item.cost_per_hour}</div>
-            <br></br>
-          </>
+          <div key={item.id} className="row">
+          <Card style={{ width: '18rem' , margin: "4ch" }}>
+          {item.photo ? <Card.Img variant="top" src={item.photo+":image/jpeg;base64"} /> : null}
+          <Card.Body>
+            <Card.Title>{item.name}</Card.Title>
+            <Card.Text style={{color : "black"}}>
+            {item.description}
+            </Card.Text>
+            <Card.Text style={{color : "black"}}>
+            Size : {item.size}x{item.size}
+            </Card.Text>
+            <Card.Text style={{color : "black"}}>
+              Location : {item.location}
+            </Card.Text>
+            <Card.Text >
+            Cost : {item.cost_per_hour}
+            </Card.Text>
+            
+            <Button variant="primary">Reserve now</Button>
+          </Card.Body>
+        </Card>
+        </div>
         );
       })}
-    </div>
+    </ul>
+    
+    </>
   );
 }
 export default GetStadiums;

@@ -1,0 +1,23 @@
+.ul{
+    list-style: square;
+    padding: auto;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.stadium_card{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    margin: 1rem;
+}
