@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Register.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const Register = () => {
   const initialValues = {
@@ -14,6 +16,7 @@ const Register = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -76,62 +79,65 @@ const Register = () => {
       <form onSubmit={handleSubmit}>
         <h1>Registration Form</h1>
         <div className="ui divider"></div>
-          <div className="field">
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formValues.name}
-              onChange={handleChange}
-            />
-          </div>
-          <p>{formErrors.name}</p>
-          <div className="field">
-            <label>Phone</label>
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone number"
-              value={formValues.phone}
-              onChange={handleChange}
-            />
-          </div>
-          <p>{formErrors.phone}</p>
+        <div className="field">
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formValues.name}
+            onChange={handleChange}
+          />
+        </div>
+        <p>{formErrors.name}</p>
+        <div className="field">
+          <label>Phone</label>
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone number"
+            value={formValues.phone}
+            onChange={handleChange}
+          />
+        </div>
+        <p>{formErrors.phone}</p>
 
-          <div className="field">
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              value={formValues.email}
-              onChange={handleChange}
-            />
-          </div>
-          <p>{formErrors.email}</p>
+        <div className="field">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            value={formValues.email}
+            onChange={handleChange}
+          />
+        </div>
+        <p>{formErrors.email}</p>
 
-          <div className="field">
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formValues.password}
-              onChange={handleChange}
-            />
-          </div>
-          <p>{formErrors.password}</p>
+        <div className="field">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formValues.password}
+            onChange={handleChange}
+          />
+        </div>
+        <p>{formErrors.password}</p>
 
-          <button className="btn btn-primary" onClick={handleApi}>
-            Submit
-          </button>
+        <button className="btn btn-primary" onClick={handleApi}>
+          Submit
+        </button>
       </form>
       {Object.keys(formErrors).length === 0 && isSubmit ? (
         <div className="success">
           <br />
           {isReady ? (
-            <h2>Registration successful!</h2>
+            <>
+              <h2>Registration successful!</h2>
+              {navigate("/login")}
+            </>
           ) : (
             <h2>An error occurred while registration. </h2>
           )}
