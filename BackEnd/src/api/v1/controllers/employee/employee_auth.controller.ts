@@ -17,19 +17,22 @@ export class EmployeeController {
               status: StatusCodes.BAD_REQUEST,
               message: ResponseMessages.LOGIN_BODY_ERROR,
             });
+            return;
           }
-          const employee: Employee = await this.employeeModel.login(email, password);
+          const employee: Employee|null = await this.employeeModel.login(email, password);
           if (employee) {
             res.status(StatusCodes.OK).json({
               status: StatusCodes.OK,
               message: ResponseMessages.LOGIN_SUCCESS,
               data: employee,
             });
+            return;
           } else {
             res.status(StatusCodes.UNAUTHORIZED).json({
               status: StatusCodes.UNAUTHORIZED,
               message: ResponseMessages.LOGIN_UNAUTHORIZED,
             });
+            return;
           }
         } catch (err) {
           const errorMessage = (err as Error)?.message ?? ResponseMessages.ERROR;

@@ -192,7 +192,7 @@ export class ReservationController {
     }
   }
 
-  private validateReservation(reservation: Reservation): boolean {
+  public validateReservation(reservation: Reservation): boolean {
     if (!reservation) {
       return false;
     }
@@ -227,7 +227,7 @@ export class ReservationController {
     return true;
   }
 
-  private validateReservationTime(reservation: Reservation): boolean {
+  public validateReservationTime(reservation: Reservation): boolean {
     // validate start_time and end_time
     const dateSplit = reservation.date.split('-');
     const year = dateSplit[0] as unknown as number;
