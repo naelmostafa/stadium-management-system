@@ -177,7 +177,13 @@ The project will be divided into 3 phases:
 
 ### State diagram
 
-- Draw the state diagram of the system.
+#### Login state diagram
+
+![state-diagram](../assets/login-state-diagram.jpg)
+
+#### Reserve state diagram
+
+![state-diagram](../assets/reserve-state-diagram.jpg)
 
 ### Activity diagram
 
