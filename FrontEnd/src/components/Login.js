@@ -115,9 +115,7 @@ const Login = () => {
         </form>
         <br />
         <br />
-        {msg === "You logged in successfully!"
-          ? navigate("/customer-profile")
-          : null}
+        {msg}
       </div>
     </div>
   );

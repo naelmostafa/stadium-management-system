@@ -109,7 +109,7 @@ function Home() {
                             },
                             {
                                 text: "Hello "+customer.name,
-                                url: "/profile",
+                                url: "/",
 
                             },
                             {

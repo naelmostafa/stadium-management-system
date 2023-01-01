@@ -16,6 +16,7 @@ const Register = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [customer, setCustomer] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -35,7 +36,11 @@ const Register = () => {
     axios
       .post("http://localhost:3030/api/v1/customer/register", formValues)
       .then((res) => {
-        setIsReady(true);
+        if(res.status < 300){
+          setIsReady(true);
+          setCustomer(res.data['data']);
+        }
+          
         console.log(res);
       })
       .catch((err) => {
@@ -136,7 +141,7 @@ const Register = () => {
           {isReady ? (
             <>
               <h2>Registration successful!</h2>
-              {navigate("/login")}
+              {navigate("/", { state: { customer } })}
             </>
           ) : (
             <h2>An error occurred while registration. </h2>
