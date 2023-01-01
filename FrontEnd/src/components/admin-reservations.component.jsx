@@ -8,9 +8,9 @@ export const AdminViewReservations = () => {
     const [reservations, setReservations] = useState([]);
 
     const getReservations = () => {
-        axios.get("http://localhost:3030/api/v1/reservations")
+        axios.get("http://localhost:3030/api/v1/reservation/all")
             .then((response) => {
-                setReservations(response.data);
+                setReservations(response.data['data']);
             })
             .catch((error) => {
                 console.log(error);

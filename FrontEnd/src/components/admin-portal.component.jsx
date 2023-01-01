@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Navbar } from "./navbar.component";
 import { Button, Container, Form} from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export const AdminLogin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
 
 
     const navLinks = {
@@ -28,17 +31,29 @@ export const AdminLogin = () => {
     };
 
     const handle = async (admin) => {
+        
         axios.post("http://localhost:3030/api/v1/admin/login", admin)
             .then((res) => {
                 console.log(res);
+                console.log(res.data);
+                if(res.status ===200){
+                    navigate('/admin');
+                }
+                else{
+                    setError(res.data['message']);
+                }
                 resetForm();
             }
             )
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                setError(err.response?.data['message']??'Login Failed');
+            });
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         const admin = {
             email,
             password,
@@ -51,7 +66,9 @@ export const AdminLogin = () => {
         <>
             <Navbar props={navLinks} />
             <Container className="mb-3">
+
                 <Form className="admin--form" onSubmit={handleSubmit}>
+                    {error && <p className="text-danger">{error}</p>}
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />

@@ -22,7 +22,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reservations" element={<ReservationsList />} />
-          <Route path="/fetch" element={<GetStadiums />} />
+          {/* <Route path="/fetch" element={<GetStadiums />} /> */}
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard body={<AdminHome />} />} />
           <Route path="/add-stadium" element={<AdminDashboard body={<AdminAddStadium />} />} />

@@ -84,7 +84,8 @@ function Home() {
     <>
       {/* <NavBar /> */}
       <Navbar
-                    props={{
+                    props={
+                      customer==null?{
                         title: "Stadium Rent",
                         links: [
                             {
@@ -93,12 +94,32 @@ function Home() {
                             },
                 
                             {
-                                text: customer==null?"Login":"Hello "+customer.name,
-                                url: customer==null?"/login":"/",
+                                text: "Login",
+                                url: "/login"
                             },
+                        
                           
                         ],
-                    }}
+                    } : {
+                        title: "Stadium Rent",
+                        links: [
+                            {
+                                text: "Home",
+                                url: "/",
+                            },
+                            {
+                                text: "Hello "+customer.name,
+                                url: "/profile",
+
+                            },
+                            {
+                                text: "Logout",
+                                url: "/login",
+                            },
+                          
+                        ]
+                    }
+                    }
                 />
       {isError && <p style={styles.error}>{errorMessage}</p>}
       <Form className={styles.form} onSubmit={handleFormSubmit}>

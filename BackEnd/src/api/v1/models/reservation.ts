@@ -161,9 +161,10 @@ class ReservationModel {
   // calculate revenue for each past day (last 30 days) and return an array of objects
   async getRevenueForPastDays(): Promise<RevenueForPastDays[]> {
     try {
-      const sql = `SELECT date, SUM(total_price) FROM reservations WHERE date >= NOW() - INTERVAL '30 days' GROUP BY date ORDER BY date ASC`;
+      const sql = `SELECT date, SUM(total_price) AS revenue FROM reservations WHERE date >= NOW() - INTERVAL '30 days' GROUP BY date ORDER BY date ASC`;
       const result = await client.query(sql);
       const revenueForPastDays = result.rows;
+      
       return revenueForPastDays;
     } catch (err) {
       const errorMessage = (err as Error)?.message ?? 'Something went wrong';

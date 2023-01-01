@@ -25,7 +25,7 @@ export const AdminDashboard = (props) => {
             },
             {
                 text: "Logout",
-                url: "/logout",
+                url: "/admin-login",
             },
         ],
     }

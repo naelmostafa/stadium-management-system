@@ -20,19 +20,21 @@ export class AdminController {
     try {
       const { email, password } = req.body;
       // validate email and password
-      if (!(email && password)) {
+      if (!(email && password) || !HelperFunction.validateEmail(email) || password.length < 6) {
         res.status(StatusCodes.BAD_REQUEST).json({
           status: StatusCodes.BAD_REQUEST,
           message: ResponseMessages.LOGIN_BODY_ERROR,
         });
+        return;
       }
-      const admin: Admin = await this.adminModel.login(email, password);
+      const admin: Admin|null = await this.adminModel.adminLogin(email, password);
       if (admin) {
         res.status(StatusCodes.OK).json({
           status: StatusCodes.OK,
           message: ResponseMessages.LOGIN_SUCCESS,
           data: admin,
         });
+        return;
       } else {
         res.status(StatusCodes.UNAUTHORIZED).json({
           status: StatusCodes.UNAUTHORIZED,

@@ -18,7 +18,6 @@ class UserModel {
       // verify bcrypt password
       const sql = `SELECT * FROM users WHERE email = $1`;
       const result = await client.query(sql, [email]);
-      console.log(result.rows.length);
       if (result.rows.length == 1) {
         const user: User = result.rows[0];
         const isPasswordCorrect = await bcrypt.compare(
