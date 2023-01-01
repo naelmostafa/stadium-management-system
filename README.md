@@ -45,9 +45,9 @@
 - [ ] Add the system modeling.
   - [x] Add the use case diagram.
   - [x] Add the class diagram.
-  - [ ] Add the sequence diagram.
+  - [x] Add the sequence diagram.
   - [ ] Add the state diagram.
-  - [ ] Add the activity diagram.
+  - [x] Add the activity diagram.
 - [ ] Add the design and implementation.
 - [ ] Add the testing.
   - [ ] Development testing.
@@ -62,7 +62,7 @@ This project is a stadium reservation system for a football club. The system is 
 |Name           |ID     |Handler                                        |
 |-              |-      |-                                              |
 |Nael Mostafa   |6099   |[naelmostafa](https://github.com/naelmostafa)  |
-|Omar Saad      |6317   |[Omar-Saad](https://github.com/Omar-Saad)  |
+|Omar Saad      |6317   |[Omar-Saad](https://github.com/Omar-Saad)      |
 |Omar Sherif    |6540   |   |
 
 ## User requirements
@@ -167,6 +167,12 @@ The project will be divided into 3 phases:
 
 ### Sequence diagram
 
+#### Customer sequence diagram
+
+![customer-sequence-diagram](../assets/customer-sequence.jpg)
+
+#### Employee sequence diagram
+
 ![admin-sequence-diagram](../assets/admin-sequence.jpg)
 
 ### State diagram
@@ -175,7 +181,7 @@ The project will be divided into 3 phases:
 
 ### Activity diagram
 
-- Draw the activity diagram of the system.
+![activity-diagram](../assets/activity-diagram.jpg)
 
 ## Design and implementation
 
