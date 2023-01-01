@@ -13,7 +13,7 @@ interface User {
 // this class communicate with the database
 class UserModel {
   // login
-  async login(email: string, password: string): Promise<User> {
+  async login(email: string, password: string): Promise<User|null> {
     try {
       // verify bcrypt password
       const sql = `SELECT * FROM users WHERE email = $1`;
@@ -30,11 +30,10 @@ class UserModel {
           delete user.password;
           return user;
         } else {
-          throw new Error('Invalid email or password');
+          return null;
         }
-      } else {
-        throw new Error('Invalid email or password');
-      }
+      } 
+      return null;
     } catch (err) {
       const errorMessage = (err as Error)?.message ?? 'Something went wrong';
       throw new Error(errorMessage);

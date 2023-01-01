@@ -13,7 +13,11 @@ const CustomerProfile = () => {
     if (e.currentTarget.getAttribute("data-value") === "home") {
       path = "/";
     }
-    navigate(path);
+    if(path === "/") {
+    navigate(path , {state: {customer: customer}});
+    }
+    else
+     navigate(path);
   };
 
   return (

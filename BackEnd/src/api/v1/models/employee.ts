@@ -21,9 +21,10 @@ class EmployeeModel extends UserModel {
     }
   }
   // ...
-  async login(email: string, password: string): Promise<Employee> {
+  async login(email: string, password: string): Promise<Employee|null> {
     try{
-    const user:User = await super.login(email,password);
+    const user:User|null = await super.login(email,password);
+    if(user == null) return null;
     const sql = `SELECT * from employee WHERE id =$1`;
     const result = await client.query(sql, [user.id]);
     if (result.rows.length == 1) {
@@ -35,9 +36,10 @@ class EmployeeModel extends UserModel {
 
       return employee;
     }
+
     else {
-      throw new Error('Something went wrong.Emplyee not found');
-    }
+      return null;
+        }
   }
   catch (err) {
     const errorMessage = (err as Error)?.message ?? 'Something went wrong';

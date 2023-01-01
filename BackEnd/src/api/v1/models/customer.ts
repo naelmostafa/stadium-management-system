@@ -33,19 +33,20 @@ class CustomerModel extends UserModel {
 
    
   // login
-  async login(email: string, password: string): Promise<Customer> {
+  async login(email: string, password: string): Promise<Customer|null> {
     try {
-      const user: User = await super.login(email, password);
+      const user: User|null = await super.login(email, password);
       const sql = `SELECT * FROM customer WHERE id = $1`;
+      if(user == null) return null;
       const result = await client.query(sql, [user.id]);
       if (result.rows.length == 1) {
-        const customer: Customer = {
+        const customer: Customer|null = {
           ...user,
           balance: result.rows[0].balance,
         };
         return customer;
       } else {
-        throw new Error('Login failed');
+        return null;
       }
     } catch (err) {
       const errorMessage = (err as Error)?.message ?? ResponseMessages.ERROR;

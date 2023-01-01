@@ -14,19 +14,24 @@ class CustomerAuthController {
           status: StatusCodes.BAD_REQUEST,
           message: ResponseMessages.LOGIN_BODY_ERROR,
         });
+        return;
       }
-      const customer: Customer = await customerModel.login(email, password);
-      if (customer) {
+      const customer: Customer|null = await customerModel.login(email, password);
+
+      if (customer!==null) {
         res.status(StatusCodes.OK).json({
           status: StatusCodes.OK,
           message: ResponseMessages.LOGIN_SUCCESS,
           data: customer,
         });
+        return;
+
       } else {
         res.status(StatusCodes.UNAUTHORIZED).json({
           status: StatusCodes.UNAUTHORIZED,
           message: ResponseMessages.LOGIN_UNAUTHORIZED,
         });
+        return;
       }
     } catch (err) {
       const errorMessage = (err as Error)?.message ?? ResponseMessages.ERROR;
