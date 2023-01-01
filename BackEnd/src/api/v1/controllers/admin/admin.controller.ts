@@ -179,11 +179,11 @@ export class AdminController {
   }
 
 
-  private validateUser(name: string, email: string, password: string, phone: string): boolean {
+  public validateUser(name: string, email: string, password: string, phone: string): boolean {
     if (!email || !name || !password || !phone) {
       return false;
     }
-    if (name.length === 0 || phone.length) {
+    if (name.length === 0 || phone.length === 0) {
       return false
     }
     if (password.length < 6)
@@ -193,7 +193,7 @@ export class AdminController {
     return true;
   }
 
-  private validateEmployee(name: string, email: string, password: string, phone: string, ssn: string, salary: number): boolean {
+  public validateEmployee(name: string, email: string, password: string, phone: string, ssn: string, salary: number): boolean {
     if (!this.validateUser(name, email, password, phone))
       return false;
     if (!ssn || ssn.length !== 10)

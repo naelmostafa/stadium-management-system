@@ -9,7 +9,7 @@ interface Stadium {
   cost_per_hour: number;
   stadium_number: number;
   status: string;
-  photo: string;
+  photo?: string;
 }
 
 // stadium status enum: available, unavailable

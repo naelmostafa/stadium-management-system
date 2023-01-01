@@ -7,6 +7,6 @@ export const database = {
 };
 
 export const AppConstants = {
-  PORT: process.env.PORT,
+  PORT: process.env.PORT || 3030,
   API_PREFIX: '/api/v1/',
 };

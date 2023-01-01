@@ -190,7 +190,7 @@ export class StadiumController {
     }
   }
 
-  private validateStadium(stadium: Stadium): boolean {
+  public validateStadium(stadium: Stadium): boolean {
     if (!stadium.cost_per_hour) return false;
     if (!stadium.description) return false;
     if (!stadium.location) return false;

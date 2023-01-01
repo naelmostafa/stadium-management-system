@@ -8,6 +8,7 @@ const client = new Pool({
   user: database.USER,
   password: database.PASSWORD,
 });
+
 pg.types.setTypeParser(1082, (value) => value);
 
 export { client };

@@ -38,3 +38,5 @@ app._router.stack.forEach((r: any) => {
 app.listen(AppConstants.PORT, () => {
   logger.info(`server started at http://localhost:${AppConstants.PORT}`);
 });
+
+export { app };

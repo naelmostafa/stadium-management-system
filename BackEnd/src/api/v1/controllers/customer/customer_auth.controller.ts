@@ -142,7 +142,7 @@ class CustomerAuthController {
     }
   }
 
-  private validateRegisterBody(
+  public validateRegisterBody(
     email: string,
     password: string,
     name: string,
