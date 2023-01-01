@@ -71,7 +71,7 @@ const Login = () => {
       .then((res) => {
         if (res.status === 200) {
           setMsg("You logged in successfully!");
-          navigate("/",{state: {customer : res.data['data']}});
+          navigate("/customer-profile", { state: { customer: res.data["data"] } });
           console.log(res);
           return res.data;
         }
@@ -115,7 +115,9 @@ const Login = () => {
         </form>
         <br />
         <br />
-        {msg}
+        {msg === "You logged in successfully!"
+          ? navigate("/customer-profile")
+          : null}
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import { AdminViewReservations } from "./components/admin-reservations.component
 import { AdminViewUsers } from "./components/admin-users.component";
 import { AdminLogin } from "./components/admin-portal.component";
 import { AdminHome } from "./components/admin-home.component";
+import CustomerProfile from "./components/CustomerProfile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/customer-profile" element={<CustomerProfile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reservations" element={<ReservationsList />} />
           {/* <Route path="/fetch" element={<GetStadiums />} /> */}
