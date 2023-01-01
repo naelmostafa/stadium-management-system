@@ -1,0 +1,62 @@
+body {
+  background: rgb(2, 0, 36);
+  background: radial-gradient(circle,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(30, 54, 59, 1) 0%,
+      rgba(93, 93, 116, 1) 100%);
+}
+
+.container {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+}
+
+.container>form {
+  width: 80%;
+  height: 70%;
+  border: 1px solid #dfdfdf;
+  padding: 20px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input {
+  width: 100%;
+  padding: 25px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+pre {
+  width: 70%;
+  color: #fff;
+  font-size: larger;
+}
+
+.button {
+  background: #0563b4 !important;
+  width: 100%;
+  padding: 20px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin: 0 auto;
+}
+
+
+
+.success {
+  color: white;
+}
