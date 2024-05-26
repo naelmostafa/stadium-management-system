@@ -1,0 +1,74 @@
+.profile > h3{
+    color: white;
+    text-align: center;
+}
+
+.heading{
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.greeting{
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.customer_details{
+    color: black;
+    padding: 12px 12px 12px 0;
+}
+
+form{
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+}
+
+/* form{
+    width: 80%;
+    height: 70%;
+    border: 1px solid #dfdfdf;
+    padding: 20px;
+    border-radius: 5px;
+    background: #fff;
+} */
+
+label {
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    justify-content: flex-start;
+}
+
+/* .logout_btn{
+    text-decoration: none;
+	float: right;
+    padding: 7px;
+    margin: 40px;
+    color: white;
+    width: 100px;
+    background-color: black;
+    transition: width .35s;
+    -webkit-transition: width .35s;
+    overflow: hidden
+} */
+
+.et_pb_button {
+    
+    display: inline-block;
+    margin: 5px; /* space between buttons */
+}
